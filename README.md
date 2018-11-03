@@ -11,5 +11,5 @@ Open IIS Manager. In the **Connections** pane, expand the server node and click 
 
 ### 1.3. Add a web site
 Open IIS Manager. In the **Connections** pane, expand the server node and click **Sites**. On the **Sites** page, in the **Actions** pane, click **Add Web site**. On the **Add Web site** dialog box, fill the following information:
-- Type *WCF Medical* as **Web site name*.
-- Select *Udokotela* as the **Applications pool*.
+- Type *WCF Medical* as **Web site name**.
+- Select *Udokotela* as the **Applications pool**.
