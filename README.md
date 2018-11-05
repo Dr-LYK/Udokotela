@@ -34,4 +34,4 @@ Open the WCF Medical project on Visual Studio. In the **Generate** pane, click o
 - Click on **Save** button to publish.
 
 ### 1.2. Second choice, Visual Studio 2017
-Open the WCF Medical project on Visual Studio. Ensure that the *Wcf-Medical* is the main target by right-click on it and select **Define as start project**. Now you can run the serveur in debug mode with **F5** or without debug with **Ctrl+F5**. It will launch the server and open a page in a web browser. Don't worry if you have a *4XX error*, everything is fine.
+Open the WCF Medical project on Visual Studio. Ensure that the "*Wcf-Medical*" is the main target by right-click on it and select **Define as start project**. Now you can run the serveur in debug mode with **F5** or without debug with **Ctrl+F5**. It will launch the server and open a page in a web browser. Don't worry if you have a "*4XX error*", everything is fine.
