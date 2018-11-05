@@ -20,7 +20,7 @@ Open IIS Manager. In the **Connections** pane, expand the server node and click 
 - Type "*WCF Medical*" as **Web site name**.
 - Select "*WCF Medical*" as the **Applications pool**.
 - Type "*%SystemDrive%\inetpub\wwwroot\medical*" as the **Physical access path**.
-- In the **Link** panel, keep "*http*" as **Type** and just change the **Port** field to "*8080*".
+- In the **Link** panel, keep "*http*" as **Type** and just change the **Port** field to "*3305*".
 - Select **Start web site immediately** to start the web site whenever the WWW service is started. By default, this is selected.
 - Click **OK**.
 
@@ -29,9 +29,9 @@ Open the WCF Medical project on Visual Studio. In the **Generate** pane, click o
 - Select "*Web Deploy*" as the **Publish method**.
 - Type "*localhost*"
 - Type "*WCF Medical*"
-- Type "*http://localhost:8080*"
+- Type "*http://localhost:3305*"
 - Click on **Validate connection** to check if the configuration is fine.
 - Click on **Save** button to publish.
 
-### 1.2. Second choice, local directory
-Open the WCF Medical project on Visual Studio. In the **Generate** pane, click on **Publish Wcf-Medical**. On the window **Select publish target**, select **Folder** in the left side menu and click on **Publish** button. Type "*bin\Release\Publish*" as choosen repository. Then click on **Publish** button.
+### 1.2. Second choice, Visual Studio 2017
+Open the WCF Medical project on Visual Studio. Ensure that the *Wcf-Medical* is the main target by right-click on it and select **Define as start project**. Now you can run the serveur in debug mode with **F5** or without debug with **Ctrl+F5**. It will launch the server and open a page in a web browser. Don't worry if you have a *4XX error*, everything is fine.
