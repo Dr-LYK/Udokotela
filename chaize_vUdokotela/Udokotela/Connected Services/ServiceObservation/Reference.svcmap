@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a97d3e17-3d43-45a9-a6a5-de1adc177083" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3055/ServiceObservation.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceObservation.disco" MetadataType="Disco" ID="f4a5d1dc-a5cd-412a-aacf-3d2adbdafab9" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?disco" />
+    <MetadataFile FileName="ServiceObservation.wsdl" MetadataType="Wsdl" ID="a0bb0403-8e01-4e3e-8c3d-3e66ef6c9ee4" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?wsdl" />
+    <MetadataFile FileName="ServiceObservation.xsd" MetadataType="Schema" ID="91ed819a-ea0e-4d97-b611-23274a35ab16" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceObservation1.xsd" MetadataType="Schema" ID="68956260-2721-44d1-9e8a-37a076a07ef5" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceObservation2.xsd" MetadataType="Schema" ID="dad3a01f-53f0-4866-a165-7888575fd7ee" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceObservation3.xsd" MetadataType="Schema" ID="a3794596-de86-4e78-846b-c2dc52ce57dd" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
