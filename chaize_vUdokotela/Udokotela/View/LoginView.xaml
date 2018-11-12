@@ -4,8 +4,85 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="800">
+        Title="LoginView"
+        Width="1024"
+        Height="768">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0, 20, 0, 20">
+            <Image
+                Width="128"
+                Height="128"
+                Margin="10"
+                Source="/Udokotela;component/Pictures/logo.png"
+                Visibility="Visible"/>
+
+            <TextBlock
+                Margin="10"
+                Text="Udokotela"
+                Style="{StaticResource ResourceKey=Title}"
+                Foreground="{StaticResource ThemeColorDark}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="1"
+                        Grid.Row="0"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center">
+                <TextBlock
+                    Padding="5"
+                    Text="Identifiant"
+                    Style="{StaticResource ResourceKey=Text}"/>
+
+                <TextBox Padding="5"
+                         Text="{Binding Login, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Grid.Row="1"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center">
+                <TextBlock
+                    Padding="5"
+                    Text="Mot de passe"
+                    Style="{StaticResource ResourceKey=Text}"/>
+
+                <TextBox Padding="5"
+                         Text="{Binding Password, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Grid.Row="2"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Button
+                    Content="Connexion"
+                    Command="{Binding LoginCommand}"
+                    Style="{StaticResource ButtonHighlight}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

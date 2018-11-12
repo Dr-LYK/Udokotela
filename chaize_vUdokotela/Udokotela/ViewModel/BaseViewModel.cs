@@ -9,6 +9,13 @@ namespace Udokotela.ViewModel
     /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Properties
+        /// <summary>
+        /// Retourne le nom de l'objet.
+        /// </summary>
+        public virtual string DisplayName { get; protected set; }
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Constructeur du ViewModel de base.
