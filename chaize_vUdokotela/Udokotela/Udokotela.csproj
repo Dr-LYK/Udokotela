@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Observation.cs" />
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="WindowCloseBehaviour.cs" />
     <Page Include="MainWindow.xaml">
@@ -236,5 +239,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

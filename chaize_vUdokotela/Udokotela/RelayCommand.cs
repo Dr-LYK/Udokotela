@@ -8,11 +8,11 @@ namespace Udokotela
     {
         #region variables
         /// <summary>
-        /// action à executer
+        /// Action à executer
         /// </summary>
         readonly Action<object> _execute;
         /// <summary>
-        /// test pour savoir si on peut executer la commande
+        /// Test pour savoir si on peut executer la commande
         /// </summary>
         readonly Predicate<object> _canExecute;
         #endregion 
