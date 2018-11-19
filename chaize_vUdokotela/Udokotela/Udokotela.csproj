@@ -57,14 +57,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Observation.cs" />
-    <Compile Include="Model\Patient.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\DataModel.cs" />
+    <Compile Include="Model\ObservationModel.cs" />
+    <Compile Include="Model\PatientModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowCloseBehaviour.cs" />
     <Compile Include="App.xaml.cs">
@@ -91,7 +100,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,6 +261,16 @@
     <Resource Include="Pictures\logo.png" />
     <Resource Include="Pictures\logo_reversed.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Pictures\account.png" />
+    <Resource Include="Pictures\live.png" />
+    <Resource Include="Pictures\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\patient_add.png" />
+    <Resource Include="Pictures\patient_search.png" />
+    <Resource Include="Pictures\user_add.png" />
+    <Resource Include="Pictures\user_search.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

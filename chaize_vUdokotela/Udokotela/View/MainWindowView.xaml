@@ -1,0 +1,86 @@
+﻿<Window x:Class="Udokotela.View.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindowView"
+        Height="768"
+        Width="1024">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="0"
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="{StaticResource ThemeColor}">
+
+            <Image
+                Width="32"
+                Height="32"
+                Margin="20, 10, 10, 10"
+                Source="/Udokotela;component/Pictures/logo_reversed.png"
+                Visibility="Visible"/>
+
+            <TextBlock
+                Margin="10, 10, 0, 10"
+                Text="Udokotela"
+                Style="{StaticResource ResourceKey=Subtitle}"
+                Foreground="White"/>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            Background="{StaticResource ThemeColor}">
+        </StackPanel>
+        
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Stretch">
+
+            <Image
+                Grid.Column="1"
+                Width="24"
+                Height="24"
+                Margin="0, 10, 10, 10"
+                Source="/Udokotela;component/Pictures/account.png"
+                Visibility="Visible"/>
+
+            <Image
+                Grid.Column="1"
+                Width="24"
+                Height="24"
+                Margin="10, 10, 20, 10"
+                Source="/Udokotela;component/Pictures/logout.png"
+                Visibility="Visible"/>
+        </StackPanel>
+        
+        <StackPanel
+            Grid.Column="0"
+            Grid.Row="1"
+            Orientation="Vertical"
+            Background="{StaticResource ThemeColorLight}">
+        </StackPanel>
+
+        <Frame
+            Grid.Column="1"
+            Grid.Row="1"
+            Source="HomeView.xaml">
+        </Frame>
+    </Grid>
+</Window>

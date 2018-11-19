@@ -4,36 +4,36 @@ using System.Collections.Generic;
 namespace Udokotela.Model
 {
     /// <summary>
-    /// Classe de modèle pour l'entité patient
+    /// Classe de modèle pour l'entité patient.
     /// </summary>
-    public class Patient
+    public class PatientModel
     {
-        #region properties
+        #region Properties
 
         /// <summary>
-        /// Numéro d'identification du patient
+        /// Numéro d'identification du patient.
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Nom du patient
+        /// Nom du patient.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Prénom du patient
+        /// Prénom du patient.
         /// </summary>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Date de naissance du patient
+        /// Date de naissance du patient.
         /// </summary>
         public DateTime Birthday { get; set; }
 
         /// <summary>
-        /// Liste des observations associées au patient
+        /// Liste des observations associées au patient.
         /// </summary>
-        public List<Observation> Observations { get; set; }
+        public List<ObservationModel> Observations { get; set; }
         
         #endregion
     }

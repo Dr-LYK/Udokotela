@@ -7,39 +7,39 @@ using System.Threading.Tasks;
 namespace Udokotela.Model
 {
     /// <summary>
-    /// Classe de modèle pour l'entité observation
+    /// Classe de modèle pour l'entité observation.
     /// </summary>
-    public class Observation
+    public class ObservationModel
     {
-        #region properties
+        #region Properties
 
         /// <summary>
-        /// Date d'ajout de l'observation
+        /// Date d'ajout de l'observation.
         /// </summary>
         public DateTime Date;
 
         /// <summary>
-        /// Masse du patient relevé lors de l'observation
+        /// Masse du patient relevé lors de l'observation.
         /// </summary>
         public int Weight;
 
         /// <summary>
-        /// Pression artérielle du patient relevé lors de l'observation
+        /// Pression artérielle du patient relevé lors de l'observation.
         /// </summary>
         public int BloodPressure;
 
         /// <summary>
-        /// Commentaire de l'observation
+        /// Commentaire de l'observation.
         /// </summary>
         public string Comment;
 
         /// <summary>
-        /// Liste des éléments de prescription lors de l'observation
+        /// Liste des éléments de prescription lors de l'observation.
         /// </summary>
         public string[] Prescription;
 
         /// <summary>
-        /// Liste d'images associées à l'observation
+        /// Liste d'images associées à l'observation.
         /// </summary>
         public Byte[][] Pictures;
 
