@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Udokotela.Services;
 using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
@@ -12,6 +13,7 @@ namespace Udokotela.ViewModel
     {
         #region Variables
         private bool _closeSignal;
+        private CSUser _userService;
         public ServiceUser.User User;
         #endregion
 
@@ -69,21 +71,23 @@ namespace Udokotela.ViewModel
         public MainWindowViewModel()
         {
             base.DisplayName = "Udokotela";
+            this._userService = new CSUser();
             UserProfileCommand = new RelayCommand(param => ShowUserProfile(), param => this.User != null);
-            LogoutCommand = new RelayCommand(param => Logout(), param => true);
+            LogoutCommand = new RelayCommand(param => Logout(), param => this.User != null);
         }
         #endregion
 
         #region Methods
         private void Logout()
         {
+            this._userService.Disconnect(this.User.Login);
             this.CloseSignal = true;
             WindowLoader.Show("Login");
         }
 
         private void ShowUserProfile()
         {
-            Console.WriteLine("Work In Progress: Showing profile of " + User.Firstname);
+            Console.WriteLine("Work In Progress: Showing profile of " + this.User.Firstname);
         }
         #endregion
     }
