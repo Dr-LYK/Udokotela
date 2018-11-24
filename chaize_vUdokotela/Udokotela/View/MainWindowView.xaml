@@ -37,12 +37,13 @@
             VerticalAlignment="Stretch"
             Background="{StaticResource ThemeColor}">
 
-            <Image
-                Width="32"
-                Height="32"
-                Margin="20, 10, 10, 10"
-                Source="/Udokotela;component/Pictures/logo_reversed.png"
-                Visibility="Visible"/>
+            <Button Grid.Column="1"
+                    Margin="20, 10, 10, 10"
+                    Style="{StaticResource ImageButton}">
+                <Image
+                    Source="/Udokotela;component/Pictures/logo_reversed.png"
+                    Visibility="Visible"/>
+            </Button>
 
             <TextBlock
                 Margin="10, 10, 0, 10"
@@ -64,24 +65,21 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch">
 
-            <Button
-                Grid.Column="1"
-                Margin="0, 10, 10, 10"
-                Background="{StaticResource ThemeColor}"
-                BorderBrush="{StaticResource ThemeColor}">
+            <Button Grid.Column="1"
+                    Margin="10, 10, 20, 10"
+                    Style="{StaticResource ImageButton}">
                 <Image
                     Source="/Udokotela;component/Pictures/account.png"
                     Visibility="Visible"/>
             </Button>
-            
 
-            <Image
-                Grid.Column="1"
-                Width="24"
-                Height="24"
-                Margin="10, 10, 20, 10"
-                Source="/Udokotela;component/Pictures/logout.png"
-                Visibility="Visible"/>
+            <Button Grid.Column="1"
+                    Margin="10, 10, 20, 10"
+                    Style="{StaticResource ImageButton}">
+                <Image
+                    Source="/Udokotela;component/Pictures/logout.png"
+                    Visibility="Visible"/>
+            </Button>
         </StackPanel>
         
         <StackPanel
