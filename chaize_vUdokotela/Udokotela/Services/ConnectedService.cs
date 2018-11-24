@@ -37,9 +37,28 @@ namespace Udokotela.Services
             }
             else
             {
-                Console.WriteLine("Not allowed");
+                Console.WriteLine("ConnectedService " + typeof(T) + " cannot be executed yet");
             }
             return defaultValue;
+        }
+
+        protected void Execute(Func<Task> func)
+        {
+            if (CanExecute())
+            {
+                try
+                {
+                    func();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("ConnectedService " + typeof(T) + " request received exception: " + ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("ConnectedService " + typeof(T) + " cannot be executed yet");
+            }
         }
     }
 }

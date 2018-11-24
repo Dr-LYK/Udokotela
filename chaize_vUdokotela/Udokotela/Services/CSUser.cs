@@ -28,9 +28,39 @@ namespace Udokotela.Services
             return this.Execute(() => this._client.ConnectAsync(login, password), false);
         }
 
-        public User GetUser(string name)
+        public void Disconnect(string login)
         {
-            return this.Execute(() => this._client.GetUserAsync(name), null);
+            this.Execute(() => this._client.DisconnectAsync(login));
+        }
+
+        public User GetUser(string login)
+        {
+            return this.Execute(() => this._client.GetUserAsync(login), null);
+        }
+
+        public List<User> GetUsers()
+        {
+            User[] users = this.Execute(() => this._client.GetListUserAsync(), null);
+            if (users != null)
+            {
+                return users.ToList();
+            }
+            return null;
+        }
+
+        public string GetRole(string login)
+        {
+            return this.Execute(() => this._client.GetRoleAsync(login), null);
+        }
+
+        public bool AddUser(User newUser)
+        {
+            return this.Execute(() => this._client.AddUserAsync(newUser), false);
+        }
+
+        public bool DeleteUser(string login)
+        {
+            return this.Execute(() => this._client.DeleteUserAsync(login), false);
         }
     }
 }
