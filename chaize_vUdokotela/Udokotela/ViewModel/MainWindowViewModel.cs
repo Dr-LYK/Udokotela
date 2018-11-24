@@ -11,10 +11,10 @@ namespace Udokotela.ViewModel
 {
     public class MainWindowViewModel: BaseViewModel
     {
+        public static ServiceUser.User User;
         #region Variables
         private bool _closeSignal;
         private CSUser _userService;
-        public ServiceUser.User User;
         #endregion
 
         #region Properties
@@ -72,22 +72,22 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Udokotela";
             this._userService = new CSUser();
-            UserProfileCommand = new RelayCommand(param => ShowUserProfile(), param => this.User != null);
-            LogoutCommand = new RelayCommand(param => Logout(), param => this.User != null);
+            UserProfileCommand = new RelayCommand(param => ShowUserProfile(), param => MainWindowViewModel.User != null);
+            LogoutCommand = new RelayCommand(param => Logout(), param => MainWindowViewModel.User != null);
         }
         #endregion
 
         #region Methods
         private void Logout()
         {
-            this._userService.Disconnect(this.User.Login);
-            this.CloseSignal = true;
+            this._userService.Disconnect(MainWindowViewModel.User.Login);
             WindowLoader.Show("Login");
+            this.CloseSignal = true;
         }
 
         private void ShowUserProfile()
         {
-            Console.WriteLine("Work In Progress: Showing profile of " + this.User.Firstname);
+            Console.WriteLine("Work In Progress: Showing profile of " + MainWindowViewModel.User.Firstname);
         }
         #endregion
     }

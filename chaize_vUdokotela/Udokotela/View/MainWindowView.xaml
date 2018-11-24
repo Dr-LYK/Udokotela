@@ -81,6 +81,7 @@
 
             <Button Grid.Column="1"
                     Margin="10, 10, 20, 10"
+                    Command="{Binding UserProfileCommand}"
                     Style="{StaticResource ImageButton}">
                 <Image
                     Source="/Udokotela;component/Pictures/account.png"
@@ -89,6 +90,7 @@
 
             <Button Grid.Column="1"
                     Margin="10, 10, 20, 10"
+                    Command="{Binding LogoutCommand}"
                     Style="{StaticResource ButtonLogout}">
                 <Image
                     Source="/Udokotela;component/Pictures/logout.png"

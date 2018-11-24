@@ -100,6 +100,7 @@ namespace Udokotela.ViewModel
                 if (loggedUser != null)
                 {
                     Console.WriteLine("Welcome back " + loggedUser.Firstname + "!");
+                    MainWindowViewModel.User = loggedUser;
                     WindowLoader.Show("MainWindow");
                     CloseSignal = true;
                     return;
