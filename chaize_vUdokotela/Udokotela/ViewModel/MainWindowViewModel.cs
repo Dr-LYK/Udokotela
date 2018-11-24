@@ -32,6 +32,20 @@ namespace Udokotela.ViewModel
         public ICommand LogoutCommand { get; set; }
 
         /// <summary>
+        /// Commande pour ouvrir le panneau de gestion des utilisateurs.
+        /// </summary>
+        public ICommand UserManagementCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ouvrir le panneau de gestion des patients.
+        /// </summary>
+        public ICommand PatientManagementCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ouvrir l'affichage des données en temps réel.
+        /// </summary>
+        public ICommand LiveDataCommand { get; set; }
+        /// <summary>
         /// Indique si la fenêtre doit être fermée ou non.
         /// </summary>
         public bool CloseSignal
