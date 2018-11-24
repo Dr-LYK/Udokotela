@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Udokotela.Services;
 using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
@@ -11,7 +12,7 @@ namespace Udokotela.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         #region Variables
-        private ServiceUser.ServiceUserClient _client;
+        private CSUser _userService;
         private bool _closeSignal;
         private string _login;
         private string _password;
@@ -83,7 +84,7 @@ namespace Udokotela.ViewModel
             Login = "";
             Password = "";
 
-            _client = new ServiceUser.ServiceUserClient();
+            _userService = new CSUser();
             LoginCommand = new RelayCommand(param => LoginAccess(), param => CanLogin());
         }
         #endregion
@@ -91,11 +92,11 @@ namespace Udokotela.ViewModel
         /// <summary>
         /// Action permettant à l'utilisateur de se connecter.
         /// </summary>
-        private async void LoginAccess()
+        private void LoginAccess()
         {
-            if (await _client.ConnectAsync(_login, _password))
+            if (_userService.Login(_login, _password))
             {
-                ServiceUser.User loggedUser = await GetLoggedUser();
+                ServiceUser.User loggedUser = _userService.GetUser(_login);
                 if (loggedUser != null)
                 {
                     Console.WriteLine("Welcome back " + loggedUser.Firstname + "!");
@@ -117,20 +118,6 @@ namespace Udokotela.ViewModel
         private bool CanLogin()
         {
             return !(this._login == null || this._login == "" || this._password == null || this._password == "");
-        }
-
-        private async Task<ServiceUser.User> GetLoggedUser()
-        {
-            try
-            {
-                ServiceUser.User loggedUser = await _client.GetUserAsync(this._login);
-                return loggedUser;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Cannot get logged user: " + ex.Message);
-                return null;
-            }
         }
     }
 }
