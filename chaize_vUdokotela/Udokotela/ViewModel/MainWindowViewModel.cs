@@ -60,6 +60,7 @@ namespace Udokotela.ViewModel
         }
         #endregion
 
+        #region Methods
         private void Logout()
         {
             this.CloseSignal = true;
@@ -70,5 +71,6 @@ namespace Udokotela.ViewModel
         {
             Console.WriteLine("Work In Progress: Showing profile of " + User.Firstname);
         }
+        #endregion
     }
 }
