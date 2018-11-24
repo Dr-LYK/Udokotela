@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
 {
@@ -94,16 +95,22 @@ namespace Udokotela.ViewModel
         {
             if (await _client.ConnectAsync(_login, _password))
             {
-                Console.WriteLine("Bien ouej !");
                 ServiceUser.User loggedUser = await GetLoggedUser();
                 if (loggedUser != null)
                 {
                     Console.WriteLine("Welcome back " + loggedUser.Firstname + "!");
+                    WindowLoader.Show("MainWindow");
+                    CloseSignal = true;
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Failed to get logged user");
                 }
             }
             else
             {
-                Console.WriteLine("You fucked bro'");
+                Console.WriteLine("Invalid credentials");
             }
         }
 

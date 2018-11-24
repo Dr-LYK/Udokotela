@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Udokotela.Utils;
 
 namespace Udokotela
 {
@@ -11,11 +12,7 @@ namespace Udokotela
         {
             base.OnStartup(e);
 
-            View.LoginView loginView = new View.LoginView();
-            ViewModel.LoginViewModel loginViewModel = new ViewModel.LoginViewModel();
-
-            loginView.DataContext = loginViewModel;
-            loginView.Show();
+            WindowLoader.Show("Login");
         }
     }
 }
