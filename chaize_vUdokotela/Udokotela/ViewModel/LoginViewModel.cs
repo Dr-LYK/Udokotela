@@ -95,6 +95,11 @@ namespace Udokotela.ViewModel
             if (await _client.ConnectAsync(_login, _password))
             {
                 Console.WriteLine("Bien ouej !");
+                ServiceUser.User loggedUser = await GetLoggedUser();
+                if (loggedUser != null)
+                {
+                    Console.WriteLine("Welcome back " + loggedUser.Firstname + "!");
+                }
             }
             else
             {
@@ -105,6 +110,20 @@ namespace Udokotela.ViewModel
         private bool CanLogin()
         {
             return !(this._login == null || this._login == "" || this._password == null || this._password == "");
+        }
+
+        private async Task<ServiceUser.User> GetLoggedUser()
+        {
+            try
+            {
+                ServiceUser.User loggedUser = await _client.GetUserAsync(this._login);
+                return loggedUser;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot get logged user: " + ex.Message);
+                return null;
+            }
         }
     }
 }
