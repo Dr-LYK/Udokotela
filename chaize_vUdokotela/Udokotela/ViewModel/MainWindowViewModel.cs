@@ -72,12 +72,26 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Udokotela";
             this._userService = new CSUser();
+            HomeCommand = new RelayCommand(param => ReturnHome(), param => true);
             UserProfileCommand = new RelayCommand(param => ShowUserProfile(), param => MainWindowViewModel.User != null);
             LogoutCommand = new RelayCommand(param => Logout(), param => MainWindowViewModel.User != null);
+            UserManagementCommand = new RelayCommand(param => ShowUserManagementScreen(), param => true);
+            PatientManagementCommand = new RelayCommand(param => ShowPatientManagementScreen(), param => true);
+            LiveDataCommand = new RelayCommand(param => ShowLiveDataScreen(), param => true);
         }
         #endregion
 
         #region Methods
+        private void ReturnHome()
+        {
+            Console.WriteLine("Work In Progress: Showing User Management screen");
+        }
+
+        private void ShowUserProfile()
+        {
+            Console.WriteLine("Work In Progress: Showing profile of " + MainWindowViewModel.User.Firstname);
+        }
+
         private void Logout()
         {
             this._userService.Disconnect(MainWindowViewModel.User.Login);
@@ -85,9 +99,19 @@ namespace Udokotela.ViewModel
             this.CloseSignal = true;
         }
 
-        private void ShowUserProfile()
+        private void ShowUserManagementScreen()
         {
-            Console.WriteLine("Work In Progress: Showing profile of " + MainWindowViewModel.User.Firstname);
+            Console.WriteLine("Work In Progress: Showing User Management screen");
+        }
+
+        private void ShowPatientManagementScreen()
+        {
+            Console.WriteLine("Work In Progress: Showing Patient Management screen");
+        }
+
+        private void ShowLiveDataScreen()
+        {
+            Console.WriteLine("Work In Progress: Showing Live Data screen");
         }
         #endregion
     }

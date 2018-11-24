@@ -53,6 +53,7 @@
 
             <Button Grid.Column="1"
                     Margin="20, 10, 10, 10"
+                    Command="{Binding HomeCommand}"
                     Style="{StaticResource ImageButton}">
                 <Image
                     Source="/Udokotela;component/Pictures/logo_reversed.png"
