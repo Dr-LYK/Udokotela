@@ -83,7 +83,7 @@ namespace Udokotela.ViewModel
             Password = "";
 
             _client = new ServiceUser.ServiceUserClient();
-            LoginCommand = new RelayCommand(param => LoginAccess(), param => true);
+            LoginCommand = new RelayCommand(param => LoginAccess(), param => CanLogin());
         }
         #endregion
 
@@ -100,6 +100,11 @@ namespace Udokotela.ViewModel
             {
                 Console.WriteLine("You fucked bro'");
             }
+        }
+
+        private bool CanLogin()
+        {
+            return !(this._login == null || this._login == "" || this._password == null || this._password == "");
         }
     }
 }
