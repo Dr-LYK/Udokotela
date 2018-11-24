@@ -64,6 +64,7 @@
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\ConnectedService.cs" />
+    <Compile Include="Services\CSLiveData.cs" />
     <Compile Include="Services\CSObservation.cs" />
     <Compile Include="Services\CSPatient.cs" />
     <Compile Include="Services\CSUser.cs" />

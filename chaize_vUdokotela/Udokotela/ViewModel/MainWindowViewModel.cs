@@ -84,7 +84,7 @@ namespace Udokotela.ViewModel
         #region Methods
         private void ReturnHome()
         {
-            Console.WriteLine("Work In Progress: Showing User Management screen");
+            ShowUserManagementScreen();
         }
 
         private void ShowUserProfile()
