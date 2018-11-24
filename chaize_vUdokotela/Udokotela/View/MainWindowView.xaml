@@ -7,6 +7,17 @@
         Title="MainWindowView"
         Height="768"
         Width="1024">
+
+    <Window.Resources>
+        <HierarchicalDataTemplate
+            x:Key="brancheTemplate"
+            ItemsSource="{Binding SubBranch}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>    
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -53,13 +64,16 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch">
 
-            <Image
+            <Button
                 Grid.Column="1"
-                Width="24"
-                Height="24"
                 Margin="0, 10, 10, 10"
-                Source="/Udokotela;component/Pictures/account.png"
-                Visibility="Visible"/>
+                Background="{StaticResource ThemeColor}"
+                BorderBrush="{StaticResource ThemeColor}">
+                <Image
+                    Source="/Udokotela;component/Pictures/account.png"
+                    Visibility="Visible"/>
+            </Button>
+            
 
             <Image
                 Grid.Column="1"
@@ -75,6 +89,10 @@
             Grid.Row="1"
             Orientation="Vertical"
             Background="{StaticResource ThemeColorLight}">
+
+            <TreeView
+                x:Name="treeView"
+                ItemTemplate="{StaticResource brancheTemplate}"/>
         </StackPanel>
 
         <Frame

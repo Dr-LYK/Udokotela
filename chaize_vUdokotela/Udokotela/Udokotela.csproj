@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Branches.cs" />
     <Compile Include="Model\DataModel.cs" />
     <Compile Include="Model\ObservationModel.cs" />
     <Compile Include="Model\PatientModel.cs" />
