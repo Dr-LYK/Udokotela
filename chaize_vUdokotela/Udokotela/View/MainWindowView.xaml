@@ -3,19 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Udokotela="clr-namespace:Udokotela"
         mc:Ignorable="d"
         Title="MainWindowView"
         Height="768"
         Width="1024">
 
     <Window.Resources>
-        <HierarchicalDataTemplate
-            x:Key="brancheTemplate"
-            ItemsSource="{Binding SubBranch}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Name}"/>
-            </StackPanel>
-        </HierarchicalDataTemplate>    
+        <Style TargetType="Button" x:Key="ButtonLogout">
+            <Setter Property="Background" Value="#FF8E7CC3"/>
+            <Setter Property="BorderBrush" Value="#FF8E7CC3"/>
+            <Style.Triggers>
+                <DataTrigger
+                    Binding="{Binding CloseSignal}"
+                    Value="true">
+                    <Setter Property="Udokotela:WindowCloseBehaviour.Close" Value="true"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonTreeView">
+            <Setter Property="Background" Value="{StaticResource ThemeColorLight}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ThemeColorLight}"/>
+            <Setter Property="TextBlock.FontFamily" Value="Segoe UI"/>
+            <Setter Property="TextBlock.FontSize" Value="13"/>
+            <Setter Property="TextBlock.Foreground" Value="{StaticResource Standard}"/>
+            
+        </Style>
     </Window.Resources>
     
     <Grid>
@@ -75,23 +89,56 @@
 
             <Button Grid.Column="1"
                     Margin="10, 10, 20, 10"
-                    Style="{StaticResource ImageButton}">
+                    Style="{StaticResource ButtonLogout}">
                 <Image
                     Source="/Udokotela;component/Pictures/logout.png"
                     Visibility="Visible"/>
             </Button>
         </StackPanel>
-        
-        <StackPanel
+
+        <DockPanel
             Grid.Column="0"
             Grid.Row="1"
-            Orientation="Vertical"
             Background="{StaticResource ThemeColorLight}">
 
             <TreeView
-                x:Name="treeView"
-                ItemTemplate="{StaticResource brancheTemplate}"/>
-        </StackPanel>
+                Background="{StaticResource ThemeColorLight}"
+                DockPanel.Dock="Top"
+                x:Name="treeView">
+                <TreeViewItem
+                    Margin="0, 10, 0, 0"
+                    IsExpanded="False">
+                    <TreeViewItem.Header>
+                        <Button
+                            Content="❯   Gestion Utilisateur"
+                            Command="{Binding UserManagementCommand}"
+                            Style="{StaticResource ResourceKey=ButtonTreeView}"/>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                
+                <TreeViewItem
+                    Margin="0, 10, 0, 0"
+                    IsExpanded="False">
+                    <TreeViewItem.Header>
+                        <Button
+                            Content="❯   Gestion Patient"
+                            Command="{Binding PatientManagementCommand}"
+                            Style="{StaticResource ResourceKey=ButtonTreeView}"/>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+
+                <TreeViewItem
+                    Margin="0, 10, 0, 0"
+                    IsExpanded="False">
+                    <TreeViewItem.Header>
+                        <Button
+                            Content="❯   Données en temps réel"
+                            Command="{Binding LiveDataCommand}"
+                            Style="{StaticResource ResourceKey=ButtonTreeView}"/>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+            </TreeView>
+        </DockPanel>
 
         <Frame
             Grid.Column="1"
