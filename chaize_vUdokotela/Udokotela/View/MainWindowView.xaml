@@ -143,10 +143,11 @@
             </TreeView>
         </DockPanel>
 
-        <Frame
+        <ContentControl
             Grid.Column="1"
             Grid.Row="1"
-            Source="HomeView.xaml">
-        </Frame>
+            Name="ContentHolder"
+            Content="HomeView.xaml">
+        </ContentControl>
     </Grid>
 </Window>

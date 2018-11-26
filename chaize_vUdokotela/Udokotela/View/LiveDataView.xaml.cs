@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Udokotela.View
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for LiveDataView.xaml
     /// </summary>
-    public partial class HomeView : Page
+    public partial class LiveDataView : Page
     {
-        public HomeView()
+        public LiveDataView()
         {
             InitializeComponent();
         }

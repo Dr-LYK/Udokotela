@@ -22,6 +22,7 @@ namespace Udokotela.View
         public MainWindowView()
         {
             InitializeComponent();
+            ContentHolder.Content = new HomeView();
         }
     }
 }
