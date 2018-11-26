@@ -52,7 +52,8 @@ namespace Udokotela.ViewModel
         #region Methods
         private void getPatientsInfo()
         {
-
+            List<Patient> patients = _patientService.GetPatients();
+            this.Patients = new ObservableCollection<Patient>(patients);
         }
         #endregion
     }
