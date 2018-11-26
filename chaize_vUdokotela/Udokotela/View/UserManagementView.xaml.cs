@@ -18,7 +18,7 @@ namespace Udokotela.View
     /// <summary>
     /// Interaction logic for UserManagementView.xaml
     /// </summary>
-    public partial class UserManagementView : Page
+    public partial class UserManagementView : UserControl
     {
         public UserManagementView()
         {

@@ -147,7 +147,7 @@
             Grid.Column="1"
             Grid.Row="1"
             Name="ContentHolder"
-            Content="HomeView.xaml">
+            Content="{Binding Content}">
         </ContentControl>
     </Grid>
 </Window>

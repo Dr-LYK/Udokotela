@@ -18,7 +18,7 @@ namespace Udokotela.View
     /// <summary>
     /// Interaction logic for LiveDataView.xaml
     /// </summary>
-    public partial class LiveDataView : Page
+    public partial class LiveDataView : UserControl
     {
         public LiveDataView()
         {

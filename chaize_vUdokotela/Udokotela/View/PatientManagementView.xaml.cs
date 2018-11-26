@@ -18,7 +18,7 @@ namespace Udokotela.View
     /// <summary>
     /// Interaction logic for PatientManagementView.xaml
     /// </summary>
-    public partial class PatientManagementView : Page
+    public partial class PatientManagementView : UserControl
     {
         public PatientManagementView()
         {
