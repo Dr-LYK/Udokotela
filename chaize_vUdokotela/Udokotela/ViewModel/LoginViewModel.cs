@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,7 +17,7 @@ namespace Udokotela.ViewModel
         private CSUser _userService;
         private bool _closeSignal;
         private string _login;
-        private string _password;
+        private SecureString _password;
         #endregion
 
 
@@ -60,7 +62,7 @@ namespace Udokotela.ViewModel
         /// <summary>
         /// Mot de passe de l'utilisateur.
         /// </summary>
-        public string Password
+        public SecureString Password
         {
             get { return _password; }
             set
@@ -82,7 +84,7 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Page de connexion";
             Login = "";
-            Password = "";
+            Password = new SecureString();
 
             _userService = new CSUser();
             LoginCommand = new RelayCommand(param => LoginAccess(), param => CanLogin());
@@ -94,7 +96,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void LoginAccess()
         {
-            if (_userService.Login(_login, _password))
+            if (_userService.Login(_login, SecureStringToString(this._password)))
             {
                 ServiceUser.User loggedUser = _userService.GetUser(_login);
                 if (loggedUser != null)
@@ -118,7 +120,23 @@ namespace Udokotela.ViewModel
 
         private bool CanLogin()
         {
-            return !(this._login == null || this._login == "" || this._password == null || this._password == "");
+            return !(this._login == null || this._login == "" || SecureStringToString(this._password) == null || SecureStringToString(this._password) == "");
+        }
+
+        private static string SecureStringToString(SecureString secureString)
+        {
+            IntPtr stringBSTR = default(IntPtr);
+            string insecureString = "";
+            try
+            {
+                stringBSTR = Marshal.SecureStringToBSTR(secureString);
+                insecureString = Marshal.PtrToStringBSTR(stringBSTR);
+            }
+            catch
+            {
+                insecureString = "";
+            }
+            return insecureString;
         }
     }
 }

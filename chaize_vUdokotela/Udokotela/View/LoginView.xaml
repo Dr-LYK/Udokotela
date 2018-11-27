@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Udokotela="clr-namespace:Udokotela"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:Udokotela"
+        xmlns:local1="clr-namespace:Udokotela.Utils"
         mc:Ignorable="d"
         Title="LoginView"
         Height="768"
@@ -89,15 +92,18 @@
                     Text="Mot de passe"
                     Style="{StaticResource ResourceKey=Text}"/>
 
-                <TextBox Padding="5"
-                         Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <PasswordBox Padding="5">
+                    <i:Interaction.Behaviors>
+                        <local1:PasswordBoxBindingBehavior Password="{Binding Password}"/>
+                    </i:Interaction.Behaviors>
+                </PasswordBox>
             </StackPanel>
 
             <StackPanel Grid.Column="1"
                         Grid.Row="2"
                         Orientation="Vertical"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Top">
                 <Button
                     Content="Connexion"
                     Command="{Binding LoginCommand}"
