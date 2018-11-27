@@ -4,14 +4,14 @@ using Udokotela.ViewModel;
 namespace Udokotela.View
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for LiveDataView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class LiveDataView : UserControl
     {
-        public HomeView()
+        public LiveDataView()
         {
             InitializeComponent();
-            this.DataContext = new HomeViewModel();
+            this.DataContext = new LiveDataViewModel();
         }
     }
 }

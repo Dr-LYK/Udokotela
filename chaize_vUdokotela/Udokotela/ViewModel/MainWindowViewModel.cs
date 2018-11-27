@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Udokotela.Services;
 using Udokotela.Utils;
+using Udokotela.View;
 
 namespace Udokotela.ViewModel
 {
@@ -15,6 +17,7 @@ namespace Udokotela.ViewModel
         #region Variables
         private bool _closeSignal;
         private CSUser _userService;
+        private UserControl _content;
         #endregion
 
         #region Properties
@@ -62,6 +65,21 @@ namespace Udokotela.ViewModel
                 }
             }
         }
+        /// <summary>
+        /// Indique le contenu de la vue dynamique.
+        /// </summary>
+        public UserControl Content
+        {
+            get { return _content; }
+            set
+            {
+                if (_content != value)
+                {
+                    _content = value;
+                    OnPropertyChanged(nameof(Content));
+                }
+            }
+        }
         #endregion
 
         #region Constructors
@@ -72,6 +90,7 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Udokotela";
             this._userService = new CSUser();
+            this._content = new HomeView();
             HomeCommand = new RelayCommand(param => ReturnHome(), param => true);
             UserProfileCommand = new RelayCommand(param => ShowUserProfile(), param => MainWindowViewModel.User != null);
             LogoutCommand = new RelayCommand(param => Logout(), param => MainWindowViewModel.User != null);
@@ -84,7 +103,7 @@ namespace Udokotela.ViewModel
         #region Methods
         private void ReturnHome()
         {
-            ShowUserManagementScreen();
+            this.Content = new HomeView();
         }
 
         private void ShowUserProfile()
@@ -101,17 +120,17 @@ namespace Udokotela.ViewModel
 
         private void ShowUserManagementScreen()
         {
-            Console.WriteLine("Work In Progress: Showing User Management screen");
+            this.Content = new UserManagementView();
         }
 
         private void ShowPatientManagementScreen()
         {
-            Console.WriteLine("Work In Progress: Showing Patient Management screen");
+            this.Content = new PatientManagementView();
         }
 
         private void ShowLiveDataScreen()
         {
-            Console.WriteLine("Work In Progress: Showing Live Data screen");
+            this.Content = new LiveDataView();
         }
         #endregion
     }

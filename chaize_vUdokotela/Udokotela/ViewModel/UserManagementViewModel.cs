@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Udokotela.Services;
 using Udokotela.ServiceUser;
+using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
 {
-    public class HomeViewModel : BaseViewModel
+    public class UserManagementViewModel: BaseViewModel
     {
         #region Variables
         private CSUser _userService;
@@ -23,7 +24,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         public ObservableCollection<User> Users
         {
-            get { return this._users; }
+            get { return this._users;  }
             set
             {
                 if (this._users != value)
@@ -44,7 +45,7 @@ namespace Udokotela.ViewModel
         /// <summary>
         /// Constructeur du ViewModel de connexion.
         /// </summary>
-        public HomeViewModel()
+        public UserManagementViewModel()
         {
             base.DisplayName = "Udokotela - User Management";
             this._userService = new CSUser();
