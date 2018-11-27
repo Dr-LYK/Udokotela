@@ -14,6 +14,7 @@ namespace Udokotela.ViewModel
     public class MainWindowViewModel: BaseViewModel
     {
         public static ServiceUser.User User;
+        
         #region Variables
         private bool _closeSignal;
         private CSUser _userService;
@@ -101,16 +102,25 @@ namespace Udokotela.ViewModel
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Fonction pour afficher la page d'accueil de l'application.
+        /// </summary>
         private void ReturnHome()
         {
             this.Content = new HomeView();
         }
 
+        /// <summary>
+        /// Fonction pour afficher le profil utilisateur.
+        /// </summary>
         private void ShowUserProfile()
         {
             Console.WriteLine("Work In Progress: Showing profile of " + MainWindowViewModel.User.Firstname);
         }
 
+        /// <summary>
+        /// Fonction pour déconnecter l'utilisateur.
+        /// </summary>
         private void Logout()
         {
             this._userService.Disconnect(MainWindowViewModel.User.Login);
@@ -118,16 +128,25 @@ namespace Udokotela.ViewModel
             this.CloseSignal = true;
         }
 
+        /// <summary>
+        /// Fonction pour afficher la page de gestion des utilisateurs.
+        /// </summary>
         private void ShowUserManagementScreen()
         {
             this.Content = new UserManagementView();
         }
 
+        /// <summary>
+        /// Fonction pour afficher la page de gestion des patients.
+        /// </summary>
         private void ShowPatientManagementScreen()
         {
             this.Content = new PatientManagementView();
         }
 
+        /// <summary>
+        /// Fonction pour afficher la page de visualisation des données en temps réel.
+        /// </summary>
         private void ShowLiveDataScreen()
         {
             this.Content = new LiveDataView();
