@@ -19,7 +19,7 @@ namespace Udokotela.ViewModel
 
         #region Properties
         /// <summary>
-        /// List of all users.
+        /// Liste de l'ensemble des utilisateurs.
         /// </summary>
         public ObservableCollection<User> Users
         {
@@ -35,14 +35,34 @@ namespace Udokotela.ViewModel
         }
 
         /// <summary>
-        /// Commande pour ouvrir le panneau de gestion des users.
+        /// Commande pour ajouter un utilisateur.
+        /// </summary>
+        public ICommand AddUserCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ouvrir le panneau de gestion des utilisateurs.
         /// </summary>
         public ICommand UserManagementCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ajouter un patient.
+        /// </summary>
+        public ICommand AddPatientCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ouvrir le panneau de gestion des patients.
+        /// </summary>
+        public ICommand PatientManagementCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour accéder à lq visualisation des données en temps réel. 
+        /// </summary>
+        public ICommand LiveDataCommand { get; set; }
         #endregion
 
         #region Constructors
         /// <summary>
-        /// Constructeur du ViewModel de connexion.
+        /// Constructeur du ViewModel de la page d'accueil.
         /// </summary>
         public HomeViewModel()
         {

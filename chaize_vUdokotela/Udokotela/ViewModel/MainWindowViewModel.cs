@@ -51,6 +51,7 @@ namespace Udokotela.ViewModel
         /// Commande pour ouvrir l'affichage des données en temps réel.
         /// </summary>
         public ICommand LiveDataCommand { get; set; }
+
         /// <summary>
         /// Indique si la fenêtre doit être fermée ou non.
         /// </summary>
@@ -85,7 +86,7 @@ namespace Udokotela.ViewModel
 
         #region Constructors
         /// <summary>
-        /// Constructeur du ViewModel de connexion.
+        /// Constructeur du ViewModel de la fenêtre principale.
         /// </summary>
         public MainWindowViewModel()
         {
