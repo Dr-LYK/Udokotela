@@ -6,6 +6,7 @@
         xmlns:Udokotela="clr-namespace:Udokotela"
         mc:Ignorable="d"
         Title="MainWindowView"
+        WindowState="Maximized"
         Height="768"
         Width="1024">
 
@@ -34,13 +35,13 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="256"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
 
         <StackPanel
@@ -61,6 +62,7 @@
             </Button>
 
             <TextBlock
+                VerticalAlignment="Center"
                 Margin="10, 10, 0, 10"
                 Text="Udokotela"
                 Style="{StaticResource ResourceKey=Subtitle}"

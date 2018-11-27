@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Udokotela.ViewModel
 {
-    class HomeViewModel
+    class HomeViewModel: BaseViewModel
     {
     }
 }
