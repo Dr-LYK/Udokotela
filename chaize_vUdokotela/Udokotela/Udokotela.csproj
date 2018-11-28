@@ -71,6 +71,7 @@
     <Compile Include="Services\CSObservation.cs" />
     <Compile Include="Services\CSPatient.cs" />
     <Compile Include="Services\CSUser.cs" />
+    <Compile Include="Utils\Converter.cs" />
     <Compile Include="Utils\PasswordBoxBindingBehavior.cs" />
     <Compile Include="Utils\WindowLoader.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />

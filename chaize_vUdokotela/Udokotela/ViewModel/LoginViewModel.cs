@@ -18,6 +18,7 @@ namespace Udokotela.ViewModel
         private bool _closeSignal;
         private string _login;
         private SecureString _password;
+        private string _errorMessage;
         #endregion
 
 
@@ -53,6 +54,7 @@ namespace Udokotela.ViewModel
             {
                 if (_login != value)
                 {
+                    ErrorMessage = "";
                     _login = value;
                     OnPropertyChanged(nameof(Login));
                 }
@@ -69,8 +71,25 @@ namespace Udokotela.ViewModel
             {
                 if (_password != value)
                 {
+                    ErrorMessage = "";
                     _password = value;
                     OnPropertyChanged(nameof(Password));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Mot de passe de l'utilisateur.
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                if (_errorMessage != value)
+                {
+                    _errorMessage = value;
+                    OnPropertyChanged(nameof(ErrorMessage));
                 }
             }
         }
@@ -85,6 +104,7 @@ namespace Udokotela.ViewModel
             base.DisplayName = "Page de connexion";
             Login = "";
             Password = new SecureString();
+            ErrorMessage = "";
 
             _userService = new CSUser();
             LoginCommand = new RelayCommand(param => LoginAccess(), param => CanLogin());
@@ -96,11 +116,11 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void LoginAccess()
         {
-            if (_userService.Login(_login, SecureStringToString(this._password)))
+            if (_userService.Login(_login, Converter.SecureStringToString(this._password)))
             {
                 ServiceUser.User loggedUser = _userService.GetUser(_login);
                 if (loggedUser != null)
-                {
+                { 
                     Console.WriteLine("Welcome back " + loggedUser.Firstname + "!");
                     MainWindowViewModel.User = loggedUser;
                     WindowLoader.Show("MainWindow");
@@ -109,34 +129,20 @@ namespace Udokotela.ViewModel
                 }
                 else
                 {
+                    ErrorMessage = "Problème serveur: Impossible de connecter cet utilisateur";
                     Console.WriteLine("Failed to get logged user");
                 }
             }
             else
             {
+                ErrorMessage = "Identifiant ou mot de passe invalide.";
                 Console.WriteLine("Invalid credentials");
             }
         }
 
         private bool CanLogin()
         {
-            return !(this._login == null || this._login == "" || SecureStringToString(this._password) == null || SecureStringToString(this._password) == "");
-        }
-
-        private static string SecureStringToString(SecureString secureString)
-        {
-            IntPtr stringBSTR = default(IntPtr);
-            string insecureString = "";
-            try
-            {
-                stringBSTR = Marshal.SecureStringToBSTR(secureString);
-                insecureString = Marshal.PtrToStringBSTR(stringBSTR);
-            }
-            catch
-            {
-                insecureString = "";
-            }
-            return insecureString;
+            return !(this._login == null || this._login == "" || Converter.SecureStringToString(this._password) == null || Converter.SecureStringToString(this._password) == "");
         }
     }
 }

@@ -65,7 +65,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="1"
@@ -103,7 +104,18 @@
                         Grid.Row="2"
                         Orientation="Vertical"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Center">
+                
+                <TextBlock Text="{Binding ErrorMessage, Mode=OneWay}"
+                           Foreground="Red"
+                           Style="{StaticResource ResourceKey=Text}"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1"
+                        Grid.Row="3"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
                 <Button
                     Content="Connexion"
                     Command="{Binding LoginCommand}"
