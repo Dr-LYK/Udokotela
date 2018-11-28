@@ -7,12 +7,12 @@
         xmlns:local="clr-namespace:Udokotela.View"
         xmlns:local1="clr-namespace:Udokotela.Utils"
         mc:Ignorable="d"
-        Title="AddUserView"
+        Title="{Binding DisplayName}"
         Height="600"
         Width="400"
-        WindowStyle="None">
+        WindowStyle="ToolWindow">
 
-    <Grid Background="White">
+    <Grid Background="#EEEEEE">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
@@ -54,8 +54,7 @@
 
             <StackPanel Grid.Column="1"
                         Orientation="Vertical"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Stretch">
+                        VerticalAlignment="Top">
 
                 <TextBox Padding="5"
                          Margin="0, 0, 0, 20"
@@ -70,8 +69,16 @@
                          Text="{Binding Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Padding="5"
-                         Margin="0, 0, 0, 20"
-                         Text="{Binding Picture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                     Margin="0, 0, 0, 10"
+                     Text="{Binding Picture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button HorizontalAlignment="Right"
+                        Content="Choisir une photo..."
+                        Width="Auto"
+                        Padding="2.5"
+                        Command="{Binding OpenFileCommand}"
+                        Style="{StaticResource ButtonBase}"/>
+ 
             </StackPanel>
         </Grid>
 

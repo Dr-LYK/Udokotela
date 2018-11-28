@@ -101,7 +101,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         public LoginViewModel()
         {
-            base.DisplayName = "Page de connexion";
+            base.DisplayName = "Connexion";
             Login = "";
             Password = new SecureString();
             ErrorMessage = "";

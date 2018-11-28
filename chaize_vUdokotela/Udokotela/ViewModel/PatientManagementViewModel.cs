@@ -43,7 +43,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         public PatientManagementViewModel()
         {
-            base.DisplayName = "Udokotela - Patient Management";
+            base.DisplayName = "Udokotela - Gestion des patients";
             this._patientService = new CSPatient();
             getPatientsInfo();
         }

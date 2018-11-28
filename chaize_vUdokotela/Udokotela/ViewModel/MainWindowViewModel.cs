@@ -152,6 +152,14 @@ namespace Udokotela.ViewModel
         {
             this.Content = new LiveDataView();
         }
+
+        /// <summary>
+        /// Vérifie si l'utilisateur courant peut exécuter l'action en fonction de son rôle.
+        /// </summary>
+        public static bool CheckUserRole()
+        {
+            return (!(User.Role.Equals("Infirmière")));
+        }
         #endregion
     }
 }

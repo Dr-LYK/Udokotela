@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Udokotela="clr-namespace:Udokotela"
         mc:Ignorable="d"
-        Title="MainWindowView"
+        Title="{Binding DisplayName, Mode=OneTime}"
         WindowState="Maximized"
         Height="768"
         Width="1024">

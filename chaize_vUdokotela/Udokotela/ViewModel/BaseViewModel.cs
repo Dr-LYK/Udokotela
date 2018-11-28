@@ -13,7 +13,7 @@ namespace Udokotela.ViewModel
         /// <summary>
         /// Retourne le nom de l'objet.
         /// </summary>
-        public virtual string DisplayName { get; protected set; }
+        public virtual string DisplayName{ get; protected set; }
         #endregion
 
         #region Constructor

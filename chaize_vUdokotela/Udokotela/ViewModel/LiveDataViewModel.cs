@@ -28,7 +28,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         public LiveDataViewModel()
         {
-            base.DisplayName = "Udokotela - Live Data";
+            base.DisplayName = "Udokotela - Données en temps réel";
             this._liveDataService = new CSLiveData();
         }
         #endregion

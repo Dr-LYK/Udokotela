@@ -47,7 +47,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         public UserManagementViewModel()
         {
-            base.DisplayName = "Udokotela - User Management";
+            base.DisplayName = "Udokotela - Gestion des utilisateurs";
             this._userService = new CSUser();
             getUsersInfo();
         }

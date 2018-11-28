@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Udokotela.Services;
 using Udokotela.ServiceUser;
+using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
 {
@@ -66,14 +67,61 @@ namespace Udokotela.ViewModel
         /// </summary>
         public HomeViewModel()
         {
-            base.DisplayName = "Udokotela - User Management";
+            base.DisplayName = "Udokotela - Accueil";
             this._userService = new CSUser();
-            getUsersInfo();
+            GetUsersInfo();
+
+            AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
+            AddPatientCommand = new RelayCommand(param => AddPatient(), param => MainWindowViewModel.CheckUserRole());
+            UserManagementCommand = new RelayCommand(param => UserManagement(), param => true);
+            PatientManagementCommand = new RelayCommand(param => PatientManagement(), param => true);
+            LiveDataCommand = new RelayCommand(param => LiveData(), param => true);
         }
         #endregion
 
         #region Methods
-        private void getUsersInfo()
+        /// <summary>
+        /// Action permettant à l'utilisateur d'ajouter un nouvel utilisateur.
+        /// </summary>
+        private void AddUser()
+        {
+            WindowLoader.Show("AddUser");
+            /* TODO */
+        }
+        
+        /// <summary>
+        /// Action permettant à l'utilisateur d'ajouter un nouveau patient.
+        /// </summary>
+        private void AddPatient()
+        {
+            /* TODO */
+        }
+
+        /// <summary>
+        /// Action permettant à l'utilisateur d'accéder à la gestion des utilisateurs.
+        /// </summary>
+        private void UserManagement()
+        {
+            /* TODO */
+        }
+
+        /// <summary>
+        /// Action permettant à l'utilisateur d'accéder à la gestion des patients.
+        /// </summary>
+        private void PatientManagement()
+        {
+            /* TODO */
+        }
+
+        /// <summary>
+        /// Action permettant à l'utilisateur de visualiser les données en temps réel.
+        /// </summary>
+        private void LiveData()
+        {
+            /* TODO */
+        }
+
+        private void GetUsersInfo()
         {
             List<User> users = _userService.GetUsers();
             this.Users = new ObservableCollection<User>(users);

@@ -60,7 +60,7 @@
         <Style TargetType="Border" x:Key="RoundedBorder">
             <Setter Property="Margin" Value="0, 10, 0, 10"/>
             <Setter Property="CornerRadius" Value="6"/>
-            <Setter Property="BorderThickness" Value="6"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
         
         <SolidColorBrush x:Key="Standard" Color="#FF333333"/>

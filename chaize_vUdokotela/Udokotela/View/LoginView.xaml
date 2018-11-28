@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Udokotela"
         xmlns:local1="clr-namespace:Udokotela.Utils"
         mc:Ignorable="d"
-        Title="LoginView"
+        Title="{Binding DisplayName, Mode=OneTime}"
         Height="768"
         Width="1024">
 
