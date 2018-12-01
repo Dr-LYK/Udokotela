@@ -8,10 +8,10 @@ namespace Udokotela.View
     /// </summary>
     public partial class HomeView : UserControl
     {
-        public HomeView()
+        public HomeView(MainWindowViewModel mainView)
         {
             InitializeComponent();
-            this.DataContext = new HomeViewModel();
+            this.DataContext = new HomeViewModel(mainView);
         }
     }
 }
