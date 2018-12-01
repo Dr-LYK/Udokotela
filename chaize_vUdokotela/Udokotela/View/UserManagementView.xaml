@@ -43,9 +43,8 @@
                       Width="Auto"
                       Margin="0, 10, 0 10"
                       Style="{DynamicResource DataGridStyle}"
-                      ItemsSource="{Binding UserList, Mode=TwoWay}"
+                      ItemsSource="{Binding UserList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       AutoGenerateColumns="False"
-                      SelectedValue="{Binding UserSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding UserSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
