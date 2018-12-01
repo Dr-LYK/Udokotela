@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Udokotela.ServiceUser;
+using Udokotela.ViewModel;
 
 namespace Udokotela.View
 {
@@ -20,9 +11,10 @@ namespace Udokotela.View
     /// </summary>
     public partial class UserSheetView : UserControl
     {
-        public UserSheetView()
+        public UserSheetView(User _userToDisplay)
         {
             InitializeComponent();
+            this.DataContext = new UserSheetViewModel(_userToDisplay);
         }
     }
 }

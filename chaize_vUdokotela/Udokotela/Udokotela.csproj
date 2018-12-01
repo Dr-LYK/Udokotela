@@ -78,10 +78,7 @@
     <Compile Include="Utils\ImageLoader.cs" />
     <Compile Include="Utils\PasswordBoxBindingBehavior.cs" />
     <Compile Include="Utils\WindowLoader.cs" />
-    <Compile Include="ViewModel\ObservationSheetView.xaml.cs">
-      <DependentUpon>ObservationSheetView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\UserProfileViewModel.cs" />
+    <Compile Include="ViewModel\UserSheetViewModel.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\AddUserViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -93,9 +90,6 @@
     <Compile Include="ViewModel\UserManagementViewModel.cs" />
     <Compile Include="View\PatientSheetView.xaml.cs">
       <DependentUpon>PatientSheetView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserProfileView.xaml.cs">
-      <DependentUpon>UserProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddPatientView.xaml.cs">
       <DependentUpon>AddPatientView.xaml</DependentUpon>
@@ -149,17 +143,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Page Include="ViewModel\ObservationSheetView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\PatientSheetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserProfileView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AddPatientView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -106,7 +106,7 @@
             <Setter Property="CanUserResizeRows" Value="False"/>
             <Setter Property="CanUserSortColumns" Value="True"/>
             <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="SelectionUnit" Value="Cell"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
             <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
             <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
             <Setter Property="AlternatingRowBackground" Value="#FFEEEEEE"/>
