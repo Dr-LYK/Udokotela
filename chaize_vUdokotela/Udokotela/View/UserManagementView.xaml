@@ -11,6 +11,7 @@
 
         <StackPanel Orientation="Vertical"
                     Margin="20, 10, 20, 10">
+            
             <Grid Margin="0, 10, 0 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -36,8 +37,6 @@
                 </StackPanel>
             </Grid>
 
-            <!-- Search Bar Here -->
-
             <DataGrid Name="DataGridUser"
                       Height="Auto"
                       Width="Auto"
@@ -48,7 +47,9 @@
                       AutoGenerateColumns="False">
 
                 <DataGrid.InputBindings>
-                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OnRowDoubleClic}" CommandParameter="{Binding ElementName=DataGridUser, Path=SelectedItem}" />
+                    <MouseBinding Gesture="LeftDoubleClick"
+                                  Command="{Binding OnRowDoubleClic}"
+                                  CommandParameter="{Binding ElementName=DataGridUser, Path=SelectedItem}" />
                 </DataGrid.InputBindings>
 
                 <DataGrid.Columns>
