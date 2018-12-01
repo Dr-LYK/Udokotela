@@ -1,0 +1,86 @@
+﻿ <Window x:Class="Udokotela.View.AddPatientView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Udokotela.View"
+        mc:Ignorable="d"
+        Title="{Binding DisplayName}"
+        Height="400"
+        Width="400"
+        WindowStyle="ToolWindow">
+
+    <Grid Background="#EEEEEE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        Orientation="Vertical"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left">
+
+                <TextBlock Text="Nom"
+                           Padding="5"
+                           Margin="0, 0, 0, 20"
+                           Style="{StaticResource ResourceKey=Text}"/>
+
+                <TextBlock Text="Prénom"
+                           Padding="5"
+                           Margin="0, 0, 0, 20"
+                           Style="{StaticResource ResourceKey=Text}"/>
+
+                <TextBlock Text="Date de naissance"
+                           Padding="5"
+                           Margin="0, 0, 0, 20"
+                           Style="{StaticResource ResourceKey=Text}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Vertical"
+                        VerticalAlignment="Top">
+
+                <TextBox Padding="5"
+                         Margin="0, 0, 0, 20"
+                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBox Padding="5"
+                         Margin="0, 0, 0, 20"
+                         Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DatePicker Padding="5"
+                            Margin="0, 0, 0, 20"
+                            Text="{Binding Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Content="Annuler"
+                    Style="{StaticResource ButtonCancel}"/>
+
+            <Button Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Content="Enregistrer"
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource ButtonHighlight}"/>
+        </Grid>
+    </Grid>
+</Window>

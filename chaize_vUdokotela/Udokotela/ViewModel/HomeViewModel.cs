@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Udokotela.Services;
 using Udokotela.ServiceUser;
 using Udokotela.Utils;
+using Udokotela.View;
 
 namespace Udokotela.ViewModel
 {
@@ -15,26 +16,9 @@ namespace Udokotela.ViewModel
     {
         #region Variables
         private CSUser _userService;
-        private ObservableCollection<User> _users;
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Liste de l'ensemble des utilisateurs.
-        /// </summary>
-        public ObservableCollection<User> Users
-        {
-            get { return this._users; }
-            set
-            {
-                if (this._users != value)
-                {
-                    this._users = value;
-                    this.OnPropertyChanged(nameof(Users));
-                }
-            }
-        }
-
         /// <summary>
         /// Commande pour ajouter un utilisateur.
         /// </summary>
@@ -69,7 +53,6 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Udokotela - Accueil";
             this._userService = new CSUser();
-            GetUsersInfo();
 
             AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
             AddPatientCommand = new RelayCommand(param => AddPatient(), param => MainWindowViewModel.CheckUserRole());
@@ -94,6 +77,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void AddPatient()
         {
+            WindowLoader.Show("AddPatient");
             /* TODO */
         }
 
@@ -119,12 +103,6 @@ namespace Udokotela.ViewModel
         private void LiveData()
         {
             /* TODO */
-        }
-
-        private void GetUsersInfo()
-        {
-            List<User> users = _userService.GetUsers();
-            this.Users = new ObservableCollection<User>(users);
         }
         #endregion
     }

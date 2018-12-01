@@ -15,30 +15,28 @@ namespace Udokotela.ViewModel
     {
         #region Variables
         private CSUser _userService;
-        private ObservableCollection<User> _users;
+        private ObservableCollection<User> _userList;
         #endregion
 
         #region Properties
         /// <summary>
         /// List of all users.
         /// </summary>
-        public ObservableCollection<User> Users
+        public ObservableCollection<User> UserList
         {
-            get { return this._users;  }
+            get { return this._userList;  }
             set
             {
-                if (this._users != value)
+                if (this._userList != value)
                 {
-                    this._users = value;
-                    this.OnPropertyChanged(nameof(Users));
+                    this._userList = value;
+                    this.OnPropertyChanged(nameof(UserList));
                 }
             }
         }
 
-        /// <summary>
-        /// Commande pour ouvrir le panneau de gestion des users.
-        /// </summary>
-        public ICommand UserManagementCommand { get; set; }
+        public ICommand AddUserCommand { get; set; }
+        public ICommand DeleteSelectedUsersCommand { get; set; }
         #endregion
 
         #region Constructors
@@ -48,16 +46,29 @@ namespace Udokotela.ViewModel
         public UserManagementViewModel()
         {
             base.DisplayName = "Udokotela - Gestion des utilisateurs";
-            this._userService = new CSUser();
-            getUsersInfo();
+            _userService = new CSUser();
+            GetUsersInfo();
+
+            AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
+            DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUsers(), param => true);
         }
         #endregion
 
         #region Methods
-        private void getUsersInfo()
+        private void GetUsersInfo()
         {
             List<User> users = _userService.GetUsers();
-            this.Users = new ObservableCollection<User>(users);
+            this.UserList = new ObservableCollection<User>(users);
+        }
+
+        private void AddUser()
+        {
+            /* TODO */
+        }
+
+        private void DeleteSelectedUsers()
+        {
+            /* TODO */
         }
         #endregion
     }

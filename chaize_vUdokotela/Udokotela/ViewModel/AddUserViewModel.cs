@@ -12,7 +12,7 @@ namespace Udokotela.ViewModel
     public class AddUserViewModel : BaseViewModel
     {
         #region Attributes
-        private CSUser _userService;
+        private readonly CSUser _userService;
         private bool _closeSignal;
         private string _name;
         private string _firstName;
@@ -141,7 +141,7 @@ namespace Udokotela.ViewModel
         public ICommand OpenFileCommand { get; set; }
 
         /// <summary>
-        /// Commande pour creer et enregistrer l'utilisateur.
+        /// Commande pour créer et enregistrer l'utilisateur.
         /// </summary>
         public ICommand SaveCommand { get; set; }
 
@@ -152,6 +152,9 @@ namespace Udokotela.ViewModel
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Constructeur du ViewModel d'ajout d'un utilisateur.
+        /// </summary>
         public AddUserViewModel()
         {
             base.DisplayName = "Ajouter un utilisateur";
