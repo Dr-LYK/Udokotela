@@ -68,9 +68,9 @@ namespace Udokotela.ViewModel
             this._mainView = mainView;
             GetUsersInfo();
 
-            AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
-            DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUsers(), param => MainWindowViewModel.CheckUserRole() && this.UserSelected != null);
-            OnRowDoubleClic = new RelayCommand(param => ShowSelectedUserProfile(), param => this.UserSelected != null);
+            this.AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
+            this.DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUsers(), param => MainWindowViewModel.CheckUserRole() && this.UserSelected != null);
+            this.OnRowDoubleClic = new RelayCommand(param => ShowSelectedUserProfile(), param => this.UserSelected != null);
         }
         #endregion
 

@@ -105,15 +105,11 @@
                   Margin="0, 10, 0 10"
                   Style="{DynamicResource DataGridStyle}"
                   ItemsSource="{Binding ObservationList, Mode=TwoWay}"
-                  AutoGenerateColumns="False"
-                  SelectedValue="{Binding ObservationSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding ObservationSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <TextBlock Padding="10, 5, 10, 5"
-                               Style="{StaticResource ResourceKey=Text}"/>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
+                  AutoGenerateColumns="False">
+
+                <DataGrid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OnRowDoubleClic}" CommandParameter="{Binding ElementName=DataGridObservation, Path=SelectedItem}" />
+                </DataGrid.InputBindings>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Date}" Header="Date"/>
