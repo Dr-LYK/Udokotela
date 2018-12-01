@@ -16,6 +16,7 @@ namespace Udokotela.ViewModel
         #region Variables
         private CSUser _userService;
         private ObservableCollection<User> _userList;
+        private User _selectedUser;
         #endregion
 
         #region Properties
@@ -35,6 +36,19 @@ namespace Udokotela.ViewModel
             }
         }
 
+        public User UserSelected
+        {
+            get { return _selectedUser; }
+            set
+            {
+                if (this._selectedUser != value)
+                {
+                    this._selectedUser = value;
+                    this.OnPropertyChanged(nameof(UserSelected));
+                }
+            }
+        }
+
         public ICommand AddUserCommand { get; set; }
         public ICommand DeleteSelectedUsersCommand { get; set; }
         #endregion
@@ -50,7 +64,7 @@ namespace Udokotela.ViewModel
             GetUsersInfo();
 
             AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
-            DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUsers(), param => true);
+            DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUsers(), param => MainWindowViewModel.CheckUserRole() && this.UserSelected != null);
         }
         #endregion
 
@@ -63,12 +77,19 @@ namespace Udokotela.ViewModel
 
         private void AddUser()
         {
-            /* TODO */
+            WindowLoader.Show("AddUser");
+            // Problem: we have no clue when user is created
+            GetUsersInfo();
         }
 
         private void DeleteSelectedUsers()
         {
-            /* TODO */
+            bool isUserDeleted = _userService.DeleteUser(this.UserSelected.Login);
+            if (isUserDeleted)
+            {
+                this.UserList.Remove(this.UserSelected);
+                this.UserSelected = null;
+            }
         }
         #endregion
     }
