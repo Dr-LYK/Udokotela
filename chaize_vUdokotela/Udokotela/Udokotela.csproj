@@ -78,6 +78,7 @@
     <Compile Include="Utils\ImageLoader.cs" />
     <Compile Include="Utils\PasswordBoxBindingBehavior.cs" />
     <Compile Include="Utils\WindowLoader.cs" />
+    <Compile Include="ViewModel\PatientSheetViewModel.cs" />
     <Compile Include="ViewModel\UserSheetViewModel.cs" />
     <Compile Include="ViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\AddUserViewModel.cs" />
