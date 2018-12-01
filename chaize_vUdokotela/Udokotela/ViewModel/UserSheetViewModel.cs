@@ -16,6 +16,7 @@ namespace Udokotela.ViewModel
     {
         #region Attributes
         private User _userToDisplay;
+        private MainWindowViewModel _mainView;
         #endregion
 
         #region Properties
@@ -68,17 +69,25 @@ namespace Udokotela.ViewModel
             get { return _userToDisplay.Connected ? "Connecté" : "Déconnecté";  }
         }
 
+        public ICommand BackCommand { get; set; }
+
         #endregion
 
         #region Constructors
-        public UserSheetViewModel(User userToDisplay)
+        public UserSheetViewModel(User userToDisplay, MainWindowViewModel mainView = null)
         {
             this._userToDisplay = userToDisplay;
+            this._mainView = mainView;
             base.DisplayName = $"Udokotela - {FirstName} {Name}";
+            this.BackCommand = new RelayCommand(param => DismissBack(), param => this._mainView != null && this._mainView.HasBackgroundContent());
         }
         #endregion
 
         #region Methods
+        private void DismissBack()
+        {
+            this._mainView.ContentBack();
+        }
         #endregion
     }
 }
