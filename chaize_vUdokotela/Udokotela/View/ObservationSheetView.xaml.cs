@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Udokotela.ViewModel
+namespace Udokotela.View
 {
     /// <summary>
     /// Interaction logic for ObservationSheetView.xaml
