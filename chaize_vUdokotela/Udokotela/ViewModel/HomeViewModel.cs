@@ -8,7 +8,6 @@ using System.Windows.Input;
 using Udokotela.Services;
 using Udokotela.ServiceUser;
 using Udokotela.Utils;
-using Udokotela.View;
 
 namespace Udokotela.ViewModel
 {
@@ -16,9 +15,27 @@ namespace Udokotela.ViewModel
     {
         #region Variables
         private CSUser _userService;
+        private ObservableCollection<User> _users;
+        private MainWindowViewModel _mainView;
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Liste de l'ensemble des utilisateurs.
+        /// </summary>
+        public ObservableCollection<User> Users
+        {
+            get { return this._users; }
+            set
+            {
+                if (this._users != value)
+                {
+                    this._users = value;
+                    this.OnPropertyChanged(nameof(Users));
+                }
+            }
+        }
+
         /// <summary>
         /// Commande pour ajouter un utilisateur.
         /// </summary>
@@ -49,16 +66,18 @@ namespace Udokotela.ViewModel
         /// <summary>
         /// Constructeur du ViewModel de la page d'accueil.
         /// </summary>
-        public HomeViewModel()
+        public HomeViewModel(MainWindowViewModel mainView)
         {
             base.DisplayName = "Udokotela - Accueil";
             this._userService = new CSUser();
+            this._mainView = mainView;
+            GetUsersInfo();
 
             AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
             AddPatientCommand = new RelayCommand(param => AddPatient(), param => MainWindowViewModel.CheckUserRole());
-            UserManagementCommand = new RelayCommand(param => UserManagement(), param => true);
-            PatientManagementCommand = new RelayCommand(param => PatientManagement(), param => true);
-            LiveDataCommand = new RelayCommand(param => LiveData(), param => true);
+            UserManagementCommand = new RelayCommand(param => UserManagement(), param => this._mainView.UserManagementCommand.CanExecute(param));
+            PatientManagementCommand = new RelayCommand(param => PatientManagement(), param => this._mainView.PatientManagementCommand.CanExecute(param));
+            LiveDataCommand = new RelayCommand(param => LiveData(), param => this._mainView.LiveDataCommand.CanExecute(param));
         }
         #endregion
 
@@ -69,7 +88,6 @@ namespace Udokotela.ViewModel
         private void AddUser()
         {
             WindowLoader.Show("AddUser");
-            /* TODO */
         }
         
         /// <summary>
@@ -78,7 +96,6 @@ namespace Udokotela.ViewModel
         private void AddPatient()
         {
             WindowLoader.Show("AddPatient");
-            /* TODO */
         }
 
         /// <summary>
@@ -86,7 +103,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void UserManagement()
         {
-            /* TODO */
+            this._mainView.UserManagementCommand.Execute(null);
         }
 
         /// <summary>
@@ -94,7 +111,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void PatientManagement()
         {
-            /* TODO */
+            this._mainView.PatientManagementCommand.Execute(null);
         }
 
         /// <summary>
@@ -102,7 +119,13 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void LiveData()
         {
-            /* TODO */
+            this._mainView.LiveDataCommand.Execute(null);
+        }
+
+        private void GetUsersInfo()
+        {
+            List<User> users = _userService.GetUsers();
+            this.Users = new ObservableCollection<User>(users);
         }
         #endregion
     }

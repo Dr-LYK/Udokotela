@@ -92,7 +92,7 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Udokotela";
             this._userService = new CSUser();
-            this._content = new HomeView();
+            this._content = new HomeView(this);
             HomeCommand = new RelayCommand(param => ReturnHome(), param => true);
             UserProfileCommand = new RelayCommand(param => ShowUserProfile(), param => MainWindowViewModel.User != null);
             LogoutCommand = new RelayCommand(param => Logout(), param => MainWindowViewModel.User != null);
@@ -108,7 +108,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void ReturnHome()
         {
-            this.Content = new HomeView();
+            this.Content = new HomeView(this);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void ShowUserProfile()
         {
-            Console.WriteLine("Work In Progress: Showing profile of " + MainWindowViewModel.User.Firstname);
+            WindowLoader.Show("UserProfile");
         }
 
         /// <summary>

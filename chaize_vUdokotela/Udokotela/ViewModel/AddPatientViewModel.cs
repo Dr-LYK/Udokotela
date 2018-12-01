@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Udokotela.ServicePatient;
 using Udokotela.Services;
+using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
 {
     public class AddPatientViewModel : BaseViewModel
     {
         #region Attributes
-        private readonly CSPatient _patientService;
+        private CSPatient _patientService;
         private bool _closeSignal;
         private string _name;
         private string _firstName;
@@ -68,7 +71,7 @@ namespace Udokotela.ViewModel
         }
 
         /// <summary>
-        /// Date de naissance de l'utilisateur à créer.
+        /// Date de naissance du patient.
         /// </summary>
         public DateTime Birthdate
         {
@@ -84,20 +87,25 @@ namespace Udokotela.ViewModel
         }
 
         /// <summary>
-        /// Commande pour créer et enregistrer le patient.
+        /// Represent current date
+        /// </summary>
+        public DateTime DateTimeNow
+        {
+            get { return DateTime.Now; }
+        }
+
+        /// <summary>
+        /// Commande pour creer et enregistrer l'utilisateur.
         /// </summary>
         public ICommand SaveCommand { get; set; }
 
         /// <summary>
-        /// Commande pour annuler la création du patient et fermer la fenêtre modale.
+        /// Commande pour annuler la création de l'utilisateur et fermer la fenêtre modale.
         /// </summary>
         public ICommand CancelCommand { get; set; }
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// Constructeur du ViewModel d'ajout d'un patient.
-        /// </summary>
         public AddPatientViewModel()
         {
             base.DisplayName = "Ajouter un patient";
@@ -105,6 +113,7 @@ namespace Udokotela.ViewModel
 
             Name = "";
             FirstName = "";
+            Birthdate = DateTime.Now;
 
             SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
             CancelCommand = new RelayCommand(param => Cancel(), param => true);
@@ -113,11 +122,21 @@ namespace Udokotela.ViewModel
 
         #region Methods
         /// <summary>
-        /// Action permettant d'enregistrer l'utilisateur.
+        /// Action permettant d'enregistrer le patient.
         /// </summary>
         private void Save()
         {
-            /* TODO */
+            Patient newPatient = new Patient() { Birthday = this._birthdate, Firstname = this._firstName, Name = this._name };
+            bool isPatientAdded =_patientService.AddPatient(newPatient);
+            if (isPatientAdded)
+            {
+                this.CloseSignal = true;
+            }
+            else
+            {
+                // TODO
+                // Behavior in case save failed
+            }
         }
 
         /// <summary>
@@ -125,7 +144,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void Cancel()
         {
-            /* TODO */
+            this.CloseSignal = true;
         }
         #endregion
     }
