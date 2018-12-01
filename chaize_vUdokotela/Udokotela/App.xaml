@@ -4,24 +4,28 @@
              xmlns:Udokotela="clr-namespace:Udokotela">
     <Application.Resources>
         
+        <!-- Style TITRE -->
         <Style x:Key="Title">
             <Setter Property="TextBlock.FontFamily" Value="Segoe UI"/>
             <Setter Property="TextBlock.FontSize" Value="40"/>
             <Setter Property="TextBlock.Foreground" Value="#FF333333"/>
         </Style>
 
+        <!-- Style SOUS-TITRE -->
         <Style x:Key="Subtitle">
             <Setter Property="TextBlock.FontFamily" Value="Segoe UI"/>
             <Setter Property="TextBlock.FontSize" Value="24"/>
             <Setter Property="TextBlock.Foreground" Value="#FF333333"/>
         </Style>
 
+        <!-- Style TEXTE -->
         <Style x:Key="Text">
             <Setter Property="TextBlock.FontFamily" Value="Segoe UI"/>
             <Setter Property="TextBlock.FontSize" Value="13"/>
             <Setter Property="TextBlock.Foreground" Value="#FF333333"/>
         </Style>
 
+        <!-- Style BOUTON STANDARD -->
         <Style TargetType="Button" x:Key="ButtonBase">
             <Setter Property="Width" Value="160"/>
             <Setter Property="Padding" Value="5"/>
@@ -30,6 +34,7 @@
             <Setter Property="TextBlock.Foreground" Value="#FF333333"/>
         </Style>
 
+        <!-- Style BOUTON THEME -->
         <Style TargetType="Button" x:Key="ButtonHighlight">
             <Setter Property="Width" Value="160"/>
             <Setter Property="Padding" Value="5"/>
@@ -53,11 +58,13 @@
             </Style.Triggers>
         </Style>
 
+        <!-- Style BOUTON AVEC IMAGE -->
         <Style TargetType="Button" x:Key="ImageButton">
             <Setter Property="Background" Value="#FF8E7CC3"/>
             <Setter Property="BorderBrush" Value="#FF8E7CC3"/>
         </Style>
 
+        <!-- STYLE BOUTON ANNULATION -->
         <Style TargetType="Button" x:Key="ButtonCancel">
             <Setter Property="Width" Value="160"/>
             <Setter Property="Padding" Value="5"/>
@@ -71,16 +78,56 @@
             </Style.Triggers>
         </Style>
 
+        <!-- Style BOUTON ARRONDI -->
         <Style TargetType="Border" x:Key="RoundedBorder">
             <Setter Property="Margin" Value="0, 10, 0, 10"/>
             <Setter Property="CornerRadius" Value="6"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
-        
+
+        <!-- Style DATAGRID -->
+        <Style TargetType="DataGrid" x:Key="DataGridStyle">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridColumnHeaderStyle}"/>
+            <Setter Property="RowHeaderStyle" Value="{DynamicResource DataGridRowHeaderStyle}"/>
+            <Setter Property="RowDetailsTemplate" Value="{DynamicResource RowDetailsTemplate}"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserResizeColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="CanUserSortColumns" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="Cell"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="AlternatingRowBackground" Value="#FFEEEEEE"/>
+        </Style>
+
+        <!-- Style DATAGRID COLUMN HEADER -->
+        <Style TargetType="DataGridColumnHeader" x:Key="DataGridColumnHeaderStyle">
+            <Setter Property="Padding" Value="10, 5, 10, 5"/>
+            <Setter Property="Background" Value="#FFCCCCCC"/>
+            <Setter Property="Foreground" Value="#FF333333"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="ToolTip" Value="Cliquer pour trier."/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style DATAGRID ROW HEADER -->
+        <Style TargetType="DataGridRowHeader" x:Key="DataGridRowHeaderStyle">
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Width" Value="26"/>
+        </Style>
+
+        <!-- Couleurs -->
         <SolidColorBrush x:Key="Standard" Color="#FF333333"/>
         <SolidColorBrush x:Key="ThemeColor" Color="#FF8E7CC3"/>
         <SolidColorBrush x:Key="ThemeColorLight" Color="#FFB4A7D6"/>
         <SolidColorBrush x:Key="ThemeColorDark" Color="#FF351C75"/>
-
     </Application.Resources>
 </Application>

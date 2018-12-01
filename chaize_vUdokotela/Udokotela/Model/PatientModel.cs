@@ -28,7 +28,7 @@ namespace Udokotela.Model
         /// <summary>
         /// Date de naissance du patient.
         /// </summary>
-        public DateTime Birthday { get; set; }
+        public DateTime Birthdate { get; set; }
 
         /// <summary>
         /// Liste des observations associées au patient.

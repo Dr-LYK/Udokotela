@@ -45,12 +45,12 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Udokotela - Gestion des patients";
             this._patientService = new CSPatient();
-            getPatientsInfo();
+            GetPatientsInfo();
         }
         #endregion
 
         #region Methods
-        private void getPatientsInfo()
+        private void GetPatientsInfo()
         {
             List<Patient> patients = _patientService.GetPatients();
             this.Patients = new ObservableCollection<Patient>(patients);

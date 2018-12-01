@@ -4,11 +4,61 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450"
+      d:DesignWidth="800">
 
-    <Grid>
-        <StackPanel
-            Background="Blue">
+    <Grid Background="White">
+
+        <StackPanel Orientation="Vertical"
+                    Margin="20, 10, 20, 10">
+            <Grid Margin="0, 10, 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Utilisateurs"
+                           Style="{StaticResource ResourceKey=Subtitle}"/>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Button Content="Supprimer la sélection"
+                            Margin="0, 0, 10, 0"
+                            Command="{Binding DeleteSelectedUsersCommand}"
+                            Style="{StaticResource ButtonBase}"/>
+
+                    <Button Content="Ajouter un utilisateur"
+                            Margin="10, 0, 0, 0"
+                            Command="{Binding AddUserCommand}"
+                            Style="{StaticResource ButtonBase}"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Search Bar Here -->
+
+            <DataGrid Name="DataGridUser"
+                      Height="Auto"
+                      Width="Auto"
+                      Margin="0, 10, 0 10"
+                      Style="{DynamicResource DataGridStyle}"
+                      ItemsSource="{Binding UserList}"
+                      AutoGenerateColumns="False">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <TextBlock Padding="10, 5, 10, 5"
+                                   Style="{StaticResource ResourceKey=Text}"/>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Nom"/>
+                    <DataGridTextColumn Binding="{Binding Firstname}" Header="Prénom"/>
+                    <DataGridTextColumn Binding="{Binding Login}" Header="Identifiant"/>
+                    <DataGridTextColumn Binding="{Binding Role}" Header="Rôle"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </UserControl>
