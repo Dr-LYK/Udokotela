@@ -134,6 +134,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Content="Annuler"
+                    Command="{Binding CancelCommand}"
                     Style="{StaticResource ButtonCancel}"/>
 
             <Button Grid.Column="1"
@@ -141,7 +142,7 @@
                     VerticalAlignment="Bottom"
                     Content="Enregistrer"
                     Command="{Binding SaveCommand}"
-                    Style="{StaticResource ButtonHighlight}"/>
+                    Style="{StaticResource CloseButtonHighlight}"/>
         </Grid>
     </Grid>
 </Window>
