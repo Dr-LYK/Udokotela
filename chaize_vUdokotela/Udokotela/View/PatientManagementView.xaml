@@ -30,7 +30,7 @@
                             Command="{Binding DeleteSelectedPatientsCommand}"
                             Style="{StaticResource ButtonBase}"/>
 
-                    <Button Content="Ajouter un utilisateur"
+                    <Button Content="Ajouter un patient"
                             Margin="10, 0, 0, 0"
                             Command="{Binding AddPatientCommand}"
                             Style="{StaticResource ButtonBase}"/>
@@ -49,7 +49,7 @@
                 <DataGrid.InputBindings>
                     <MouseBinding Gesture="LeftDoubleClick"
                                   Command="{Binding OnRowDoubleClic}"
-                                  CommandParameter="{Binding ElementName=DataGridUser, Path=SelectedItem}" />
+                                  CommandParameter="{Binding ElementName=DataGridPatient, Path=SelectedItem}" />
                 </DataGrid.InputBindings>
 
                 <DataGrid.Columns>

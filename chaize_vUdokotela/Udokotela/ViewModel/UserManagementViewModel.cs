@@ -69,7 +69,7 @@ namespace Udokotela.ViewModel
             GetUsersInfo();
 
             this.AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
-            this.DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUsers(), param => MainWindowViewModel.CheckUserRole() && this.UserSelected != null);
+            this.DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUser(), param => MainWindowViewModel.CheckUserRole() && this.UserSelected != null);
             this.OnRowDoubleClic = new RelayCommand(param => ShowSelectedUserProfile(), param => this.UserSelected != null);
         }
         #endregion
@@ -88,7 +88,7 @@ namespace Udokotela.ViewModel
             GetUsersInfo();
         }
 
-        private void DeleteSelectedUsers()
+        private void DeleteSelectedUser()
         {
             bool isUserDeleted = _userService.DeleteUser(this.UserSelected.Login);
             if (isUserDeleted)
