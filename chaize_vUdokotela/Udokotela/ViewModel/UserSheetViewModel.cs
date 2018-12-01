@@ -11,7 +11,7 @@ using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
 {
-    public class UserProfileViewModel : BaseViewModel
+    public class UserSheetViewModel : BaseViewModel
     {
         #region Attributes
         private bool _closeSignal;
@@ -66,7 +66,7 @@ namespace Udokotela.ViewModel
         #endregion
 
         #region Constructors
-        public UserProfileViewModel()
+        public UserSheetViewModel()
         {
             base.DisplayName = $"{FirstName} {Name}";
 
