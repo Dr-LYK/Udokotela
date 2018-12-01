@@ -144,7 +144,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void ShowPatientManagementScreen()
         {
-            this.Content = new PatientManagementView();
+            this.Content = new PatientManagementView(this);
         }
 
         /// <summary>

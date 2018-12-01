@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Udokotela.ServicePatient;
+using Udokotela.ViewModel;
 
 namespace Udokotela.View
 {
@@ -20,14 +22,10 @@ namespace Udokotela.View
     /// </summary>
     public partial class PatientSheetView : UserControl
     {
-        public PatientSheetView()
+        public PatientSheetView(Patient _patientToDisplay, MainWindowViewModel mainView = null)
         {
             InitializeComponent();
-        }
-
-        private void DataGridObservation_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            this.DataContext = new PatientSheetViewModel(_patientToDisplay, mainView);
         }
     }
 }
