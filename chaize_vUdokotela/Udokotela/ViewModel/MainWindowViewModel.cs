@@ -19,6 +19,7 @@ namespace Udokotela.ViewModel
         private bool _closeSignal;
         private CSUser _userService;
         private UserControl _content;
+        private List<UserControl> _backgroundContent;
         #endregion
 
         #region Properties
@@ -93,6 +94,7 @@ namespace Udokotela.ViewModel
             base.DisplayName = "Udokotela";
             this._userService = new CSUser();
             this._content = new HomeView(this);
+            this._backgroundContent = new List<UserControl>();
             HomeCommand = new RelayCommand(param => ReturnHome(), param => true);
             UserProfileCommand = new RelayCommand(param => ShowUserProfile(), param => MainWindowViewModel.User != null);
             LogoutCommand = new RelayCommand(param => Logout(), param => MainWindowViewModel.User != null);
@@ -134,7 +136,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void ShowUserManagementScreen()
         {
-            this.Content = new UserManagementView();
+            this.Content = new UserManagementView(this);
         }
 
         /// <summary>
@@ -159,6 +161,37 @@ namespace Udokotela.ViewModel
         public static bool CheckUserRole()
         {
             return (!(User.Role.Equals("Infirmière")));
+        }
+
+        /// <summary>
+        /// Display new screen, remembering previous content
+        /// </summary>
+        /// <param name="newContent"></param>
+        public void OverlayContent(UserControl newContent)
+        {
+            this._backgroundContent.Add(this.Content);
+            this.Content = newContent;
+        }
+
+        /// <summary>
+        /// Determines if current content can be replaced with previous content
+        /// </summary>
+        /// <returns></returns>
+        public bool HasBackgroundContent()
+        {
+            return this._backgroundContent.Any();
+        }
+
+        /// <summary>
+        /// Replace current content with previous content
+        /// </summary>
+        public void ContentBack()
+        {
+            if (HasBackgroundContent())
+            {
+                this.Content = this._backgroundContent.Last();
+                this._backgroundContent.RemoveAt(this._backgroundContent.Count - 1);
+            }
         }
         #endregion
     }

@@ -11,10 +11,10 @@ namespace Udokotela.View
     /// </summary>
     public partial class UserSheetView : UserControl
     {
-        public UserSheetView(User _userToDisplay)
+        public UserSheetView(User _userToDisplay, MainWindowViewModel mainView = null)
         {
             InitializeComponent();
-            this.DataContext = new UserSheetViewModel(_userToDisplay);
+            this.DataContext = new UserSheetViewModel(_userToDisplay, mainView);
         }
     }
 }

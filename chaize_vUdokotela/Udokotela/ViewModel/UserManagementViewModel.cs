@@ -4,10 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Udokotela.Services;
 using Udokotela.ServiceUser;
 using Udokotela.Utils;
+using Udokotela.View;
 
 namespace Udokotela.ViewModel
 {
@@ -17,6 +19,7 @@ namespace Udokotela.ViewModel
         private CSUser _userService;
         private ObservableCollection<User> _userList;
         private User _selectedUser;
+        private MainWindowViewModel _mainView;
         #endregion
 
         #region Properties
@@ -43,6 +46,7 @@ namespace Udokotela.ViewModel
             {
                 if (this._selectedUser != value)
                 {
+                    Console.WriteLine($"New user selected {value.Firstname}");
                     this._selectedUser = value;
                     this.OnPropertyChanged(nameof(UserSelected));
                 }
@@ -51,20 +55,23 @@ namespace Udokotela.ViewModel
 
         public ICommand AddUserCommand { get; set; }
         public ICommand DeleteSelectedUsersCommand { get; set; }
+        public ICommand OnRowDoubleClic { get; set; }
         #endregion
 
         #region Constructors
         /// <summary>
         /// Constructeur du ViewModel de connexion.
         /// </summary>
-        public UserManagementViewModel()
+        public UserManagementViewModel(MainWindowViewModel mainView)
         {
             base.DisplayName = "Udokotela - Gestion des utilisateurs";
-            _userService = new CSUser();
+            this._userService = new CSUser();
+            this._mainView = mainView;
             GetUsersInfo();
 
             AddUserCommand = new RelayCommand(param => AddUser(), param => MainWindowViewModel.CheckUserRole());
             DeleteSelectedUsersCommand = new RelayCommand(param => DeleteSelectedUsers(), param => MainWindowViewModel.CheckUserRole() && this.UserSelected != null);
+            OnRowDoubleClic = new RelayCommand(param => ShowSelectedUserProfile(), param => this.UserSelected != null);
         }
         #endregion
 
@@ -90,6 +97,12 @@ namespace Udokotela.ViewModel
                 this.UserList.Remove(this.UserSelected);
                 this.UserSelected = null;
             }
+        }
+
+        private void ShowSelectedUserProfile()
+        {
+            UserControl profileView = new UserSheetView(this.UserSelected, this._mainView);
+            this._mainView.OverlayContent(profileView);
         }
         #endregion
     }

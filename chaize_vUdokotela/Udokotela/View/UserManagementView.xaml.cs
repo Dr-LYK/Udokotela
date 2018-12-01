@@ -8,10 +8,10 @@ namespace Udokotela.View
     /// </summary>
     public partial class UserManagementView : UserControl
     {
-        public UserManagementView()
+        public UserManagementView(MainWindowViewModel mainView)
         {
             InitializeComponent();
-            this.DataContext = new UserManagementViewModel();
+            this.DataContext = new UserManagementViewModel(mainView);
         }
     }
 }
