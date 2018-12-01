@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Udokotela.ServicePatient;
 using Udokotela.Services;
+using Udokotela.ServiceUser;
 using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
@@ -14,40 +15,33 @@ namespace Udokotela.ViewModel
     public class UserSheetViewModel : BaseViewModel
     {
         #region Attributes
-        private bool _closeSignal;
+        private User _userToDisplay;
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Indique si la fenêtre doit être fermée ou non.
-        /// </summary>
-        public bool CloseSignal
-        {
-            get { return _closeSignal; }
-            set
-            {
-                if (_closeSignal != value)
-                {
-                    _closeSignal = value;
-                    OnPropertyChanged(nameof(CloseSignal));
-                }
-            }
-        }
 
         /// <summary>
         /// Nom de famille de l'utilisateur.
         /// </summary>
         public string Name
         {
-            get { return MainWindowViewModel.User.Name; }
+            get { return _userToDisplay.Name; }
         }
 
         /// <summary>
-        /// Prénom de l'utilisateur à créer.
+        /// Prénom de l'utilisateur.
         /// </summary>
         public string FirstName
         {
-            get { return MainWindowViewModel.User.Firstname; }
+            get { return _userToDisplay.Firstname; }
+        }
+
+        /// <summary>
+        /// Login de l'utilisateur.
+        /// </summary>
+        public string Login
+        {
+            get { return _userToDisplay.Login; }
         }
 
         /// <summary>
@@ -55,34 +49,36 @@ namespace Udokotela.ViewModel
         /// </summary>
         public string Role
         {
-            get { return MainWindowViewModel.User.Role; }
+            get { return _userToDisplay.Role; }
         }
 
         /// <summary>
-        /// Commande pour creer et enregistrer l'utilisateur.
+        /// Image de l'utilisateur.
         /// </summary>
-        public ICommand CloseWindowCommand { get; set; }
+        public byte[] Picture
+        {
+            get { return _userToDisplay.Picture; }
+        }
+
+        /// <summary>
+        /// Status de connexion de l'utilisateur.
+        /// </summary>
+        public string Status
+        {
+            get { return _userToDisplay.Connected ? "Connecté" : "Déconnecté";  }
+        }
 
         #endregion
 
         #region Constructors
-        public UserSheetViewModel()
+        public UserSheetViewModel(User userToDisplay)
         {
-            base.DisplayName = $"{FirstName} {Name}";
-
-            CloseWindowCommand = new RelayCommand(param => CloseWindow(), param => true);
+            this._userToDisplay = userToDisplay;
+            base.DisplayName = $"Udokotela - {FirstName} {Name}";
         }
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Action permettant de fermer la fenetre du profile.
-        /// </summary>
-        private void CloseWindow()
-        {
-            this.CloseSignal = true;
-        }
         #endregion
     }
 }

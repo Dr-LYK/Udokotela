@@ -91,9 +91,6 @@
     <Compile Include="View\PatientSheetView.xaml.cs">
       <DependentUpon>PatientSheetView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserProfileView.xaml.cs">
-      <DependentUpon>UserProfileView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\AddPatientView.xaml.cs">
       <DependentUpon>AddPatientView.xaml</DependentUpon>
     </Compile>
@@ -149,10 +146,6 @@
     <Page Include="View\PatientSheetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserProfileView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AddPatientView.xaml">
       <Generator>MSBuild:Compile</Generator>

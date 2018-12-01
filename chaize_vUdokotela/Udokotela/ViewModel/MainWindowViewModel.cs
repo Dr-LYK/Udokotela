@@ -116,7 +116,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void ShowUserProfile()
         {
-            this.Content = new UserSheetView();
+            this.Content = new UserSheetView(MainWindowViewModel.User);
         }
 
         /// <summary>

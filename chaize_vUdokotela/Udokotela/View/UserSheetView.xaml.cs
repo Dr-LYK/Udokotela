@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using Udokotela.ServiceUser;
 using Udokotela.ViewModel;
 
 namespace Udokotela.View
@@ -10,10 +11,10 @@ namespace Udokotela.View
     /// </summary>
     public partial class UserSheetView : UserControl
     {
-        public UserSheetView()
+        public UserSheetView(User _userToDisplay)
         {
             InitializeComponent();
-            this.DataContext = new UserSheetViewModel();
+            this.DataContext = new UserSheetViewModel(_userToDisplay);
         }
     }
 }
