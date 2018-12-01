@@ -24,5 +24,10 @@ namespace Udokotela.View
         {
             InitializeComponent();
         }
+
+        private void DataGridObservation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
