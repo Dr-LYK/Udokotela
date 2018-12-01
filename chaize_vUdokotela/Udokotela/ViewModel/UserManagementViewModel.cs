@@ -46,7 +46,6 @@ namespace Udokotela.ViewModel
             {
                 if (this._selectedUser != value)
                 {
-                    Console.WriteLine($"New user selected {value.Firstname}");
                     this._selectedUser = value;
                     this.OnPropertyChanged(nameof(UserSelected));
                 }

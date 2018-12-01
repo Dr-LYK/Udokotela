@@ -27,7 +27,7 @@ namespace Udokotela.ViewModel
                 if (this._patients != value)
                 {
                     this._patients = value;
-                    this.OnPropertyChanged(nameof(Patient));
+                    this.OnPropertyChanged(nameof(Patients));
                 }
             }
         }
