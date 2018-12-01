@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Udokotela.ServiceObservation;
 using Udokotela.ServicePatient;
 
@@ -29,25 +30,25 @@ namespace Udokotela.ViewModel
         /// <summary>
         /// Masse de l'individu relevée lors de l'observation.
         /// </summary>
-        public string Weight
+        public int Weight
         {
-            get { return _observationToDisplay.Weight.ToString(); }
+            get { return _observationToDisplay.Weight; }
         }
 
         /// <summary>
         /// Pression artérielle de l'individu relevée lors de l'observation.
         /// </summary>
-        public string BloodPressure
+        public int BloodPressure
         {
-            get { return _observationToDisplay.BloodPressure.ToString(); }
+            get { return _observationToDisplay.BloodPressure; }
         }
 
         /// <summary>
         /// Numéro identifiant du patient.
         /// </summary>
-        public string Id
+        public int Id
         {
-            get { return _patientToDisplay.Id.ToString(); }
+            get { return _patientToDisplay.Id; }
         }
 
         /// <summary>
@@ -72,6 +73,27 @@ namespace Udokotela.ViewModel
         public string Birthdate
         {
             get { return _patientToDisplay.Birthday.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR")); }
+        }
+
+        public ICommand BackCommand { get; set; }
+
+        #endregion
+
+        #region Constructors
+        public ObservationSheetViewModel(Patient patientToDisplay, ServiceObservation.Observation observationToDisplay, MainWindowViewModel mainView = null)
+        {
+            this._patientToDisplay = patientToDisplay;
+            this._observationToDisplay = observationToDisplay;
+            this._mainView = mainView;
+            base.DisplayName = $"Udokotela - {Firstname} {Name}";
+            this.BackCommand = new RelayCommand(param => DismissBack(), param => this._mainView != null && this._mainView.HasBackgroundContent());
+        }
+        #endregion
+
+        #region Methods
+        private void DismissBack()
+        {
+            this._mainView.ContentBack();
         }
         #endregion
     }
