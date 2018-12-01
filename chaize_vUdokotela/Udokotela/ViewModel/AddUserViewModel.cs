@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Udokotela.Services;
+using Udokotela.ServiceUser;
+using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
 {
@@ -176,7 +178,18 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void Save()
         {
-            /* TODO */
+            byte[] imageData = ImageLoader.Load(this._picture);
+            User newUser = new User() { Connected = false, Firstname = this._firstName, Login = this._login, Name = this._name, Picture = imageData, Pwd = Converter.SecureStringToString(this._password), Role = this._role };
+            bool isUserAdded =_userService.AddUser(newUser);
+            if (isUserAdded)
+            {
+                this.CloseSignal = true;
+            }
+            else
+            {
+                // TODO
+                // Behavior in case save failed
+            }
         }
 
         /// <summary>
@@ -184,7 +197,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void Cancel()
         {
-            /* TODO */ 
+            this.CloseSignal = true;
         }
 
         /// <summary>
@@ -192,7 +205,14 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void OpenFile()
         {
-            /* TODO */
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "Image Files (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
+            bool? result = dlg.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                this.Picture = dlg.FileName;
+            }
         }
         #endregion
     }
