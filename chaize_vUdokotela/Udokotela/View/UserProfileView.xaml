@@ -76,7 +76,7 @@
                     VerticalAlignment="Bottom"
                     Content="Fermer"
                     Command="{Binding CloseWindowCommand}"
-                    Style="{StaticResource ButtonHighlight}"/>
+                    Style="{StaticResource CloseButtonHighlight}"/>
         </Grid>
     </Grid>
 </Window>
