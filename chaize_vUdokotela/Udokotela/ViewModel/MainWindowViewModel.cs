@@ -116,7 +116,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void ShowUserProfile()
         {
-            Console.WriteLine("Work In Progress: Showing profile of " + MainWindowViewModel.User.Firstname);
+            WindowLoader.Show("UserProfile");
         }
 
         /// <summary>
