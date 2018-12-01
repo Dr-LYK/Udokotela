@@ -86,7 +86,6 @@ namespace Udokotela.ViewModel
         private void AddUser()
         {
             WindowLoader.Show("AddUser");
-            /* TODO */
         }
         
         /// <summary>
@@ -94,7 +93,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void AddPatient()
         {
-            /* TODO */
+            WindowLoader.Show("AddPatient");
         }
 
         /// <summary>
