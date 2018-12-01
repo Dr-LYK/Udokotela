@@ -115,6 +115,9 @@
     <Compile Include="View\UserManagementView.xaml.cs">
       <DependentUpon>UserManagementView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserSheetView.xaml.cs">
+      <DependentUpon>UserSheetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowCloseBehaviour.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -175,6 +178,10 @@
     <Page Include="View\UserManagementView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserSheetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
