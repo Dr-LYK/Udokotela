@@ -19,7 +19,7 @@ namespace Udokotela.Services
             this._client = (IServiceLive)service;
         }
 
-        public CSLiveData(): this(new ServiceLiveClient(null))
+        public CSLiveData(): this(new ServiceLiveClient(new InstanceContext(OperationContext.Current)))
         {
             Subscribe();
         }
