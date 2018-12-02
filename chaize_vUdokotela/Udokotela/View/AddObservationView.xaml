@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Udokotela.View"
         mc:Ignorable="d"
         Title="{Binding DisplayName}"
-        Height="500"
+        Height="600"
         Width="600"
         WindowStyle="ToolWindow">
     
@@ -38,7 +38,7 @@
 
                     <TextBlock Text="Prescription"
                                Padding="5"
-                               Margin="0, 0, 0, 50"
+                               Margin="0, 0, 0, 88"
                                Style="{StaticResource ResourceKey=Text}"/>
 
                     <TextBlock Text="Images"
@@ -57,6 +57,29 @@
                              Margin="0, 0, 0, 10"
                              Text="{Binding BloodPressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <TextBox Padding="5"
+                             Margin="0, 0, 0, 10"
+                             Text="{Binding PrescriptionItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Button HorizontalAlignment="Right"
+                            Margin="0, 0, 0, 50"
+                            Content="Ajouter"
+                            Width="Auto"
+                            Padding="2.5"
+                            Command="{Binding AddPrescriptionItemCommand}"
+                            Style="{StaticResource ButtonBase}"/>
+                    
+                    <TextBox Padding="5"
+                             Margin="0, 0, 0, 10"
+                             Text="{Binding Picture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Button HorizontalAlignment="Right"
+                            Margin="0, 0, 0, 50"
+                            Content="Ajouter"
+                            Width="Auto"
+                            Padding="2.5"
+                            Command="{Binding AddPictureCommand}"
+                            Style="{StaticResource ButtonBase}"/>
                 </StackPanel>
             </Grid>
             
