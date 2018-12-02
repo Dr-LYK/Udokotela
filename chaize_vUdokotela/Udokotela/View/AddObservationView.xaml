@@ -73,13 +73,24 @@
                              Margin="0, 0, 0, 10"
                              Text="{Binding Picture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <Button HorizontalAlignment="Right"
-                            Margin="0, 0, 0, 50"
-                            Content="Ajouter"
-                            Width="Auto"
-                            Padding="2.5"
-                            Command="{Binding AddPictureCommand}"
-                            Style="{StaticResource ButtonBase}"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        
+                        <Button Margin="0, 0, 5, 50"
+                                Content="Choisir une photo..."
+                                Width="Auto"
+                                Padding="2.5"
+                                Command="{Binding OpenFileCommand}"
+                                Style="{StaticResource ButtonBase}"/>
+                        
+                        <Button Margin="5, 0, 0, 50"
+                                Content="Ajouter"
+                                Width="Auto"
+                                Padding="2.5"
+                                Command="{Binding AddPictureCommand}"
+                                Style="{StaticResource ButtonBase}"/>
+                    </StackPanel>
+                    
                 </StackPanel>
             </Grid>
             
