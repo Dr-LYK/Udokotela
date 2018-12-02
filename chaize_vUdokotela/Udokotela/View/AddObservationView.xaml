@@ -1,0 +1,99 @@
+﻿<Window x:Class="Udokotela.View.AddObservationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Udokotela.View"
+        mc:Ignorable="d"
+        Title="{Binding DisplayName}"
+        Height="500"
+        Width="600"
+        WindowStyle="ToolWindow">
+    
+    <Grid Background="#EEEEEE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Vertical">
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            Orientation="Vertical">
+                    <TextBlock Text="Masse (kg)"
+                               Padding="5"
+                               Margin="0, 0, 0, 10"
+                               Style="{StaticResource ResourceKey=Text}"/>
+
+                    <TextBlock Text="Pression artérielle (mm Hg)"
+                               Padding="5"
+                               Margin="0, 0, 0, 10"
+                               Style="{StaticResource ResourceKey=Text}"/>
+
+                    <TextBlock Text="Prescription"
+                               Padding="5"
+                               Margin="0, 0, 0, 50"
+                               Style="{StaticResource ResourceKey=Text}"/>
+
+                    <TextBlock Text="Images"
+                               Padding="5"
+                               Margin="0, 0, 0, 50"
+                               Style="{StaticResource ResourceKey=Text}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Vertical">
+                    <TextBox Padding="5"
+                             Margin="0, 0, 0, 10"
+                             Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Padding="5"
+                             Margin="0, 0, 0, 10"
+                             Text="{Binding BloodPressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </StackPanel>
+            </Grid>
+            
+            <TextBlock Text="Commentaire"
+                       Margin="20, 10, 20, 5"
+                       Style="{StaticResource ResourceKey=Text}"/>
+
+            <TextBox Width="Auto"
+                     Height="100"
+                     Margin="20, 0, 20, 0"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     HorizontalScrollBarVisibility="Disabled"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        
+        <Grid Grid.Row="1"
+              Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Content="Annuler"
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource ButtonCancel}"/>
+
+            <Button Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Content="Enregistrer"
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource CloseButtonHighlight}"/>
+        </Grid>
+    </Grid>
+</Window>
