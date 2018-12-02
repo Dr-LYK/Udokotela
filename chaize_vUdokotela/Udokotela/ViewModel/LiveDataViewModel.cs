@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Udokotela.Services;
 using Udokotela.Utils;
+using LiveCharts;
+using LiveCharts.Wpf;
+using Udokotela.ServiceLive;
 
 namespace Udokotela.ViewModel
 {
@@ -30,10 +33,14 @@ namespace Udokotela.ViewModel
         {
             base.DisplayName = "Udokotela - Données en temps réel";
             this._liveDataService = new CSLiveData();
+
         }
         #endregion
 
         #region Methods
+        private void Run()
+        {
+        }
         #endregion
     }
 }

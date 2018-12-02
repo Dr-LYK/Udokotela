@@ -28,13 +28,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        <Storyboard x:Key="LoginFade">
-            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                             Storyboard.TargetName="Animation"
-                             From="0.0" To="1.0"
-                             Duration="0:0:2.0"/>
-        </Storyboard>
     </Window.Resources>
 
     <Window.Triggers>

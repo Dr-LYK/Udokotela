@@ -137,5 +137,13 @@
         <SolidColorBrush x:Key="ThemeColor" Color="#FF8E7CC3"/>
         <SolidColorBrush x:Key="ThemeColorLight" Color="#FFB4A7D6"/>
         <SolidColorBrush x:Key="ThemeColorDark" Color="#FF351C75"/>
+
+        <!-- ANIMATION FADDING -->
+        <Storyboard x:Key="LoginFade">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="Animation"
+                             From="0.0" To="1.0"
+                             Duration="0:0:2.0"/>
+        </Storyboard>
     </Application.Resources>
 </Application>
