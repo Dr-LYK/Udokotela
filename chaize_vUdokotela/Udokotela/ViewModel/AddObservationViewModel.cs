@@ -176,6 +176,11 @@ namespace Udokotela.ViewModel
         /// Commande pour ajouter une image à l'observation
         /// </summary>
         public ICommand AddPictureCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ajouter une image depuis l'explorer à l'observation
+        /// </summary>
+        public ICommand OpenFileCommand { get; set; }
         #endregion
 
         #region Constructors
@@ -197,7 +202,8 @@ namespace Udokotela.ViewModel
             this.SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
             this.CancelCommand = new RelayCommand(param => Cancel(), param => true);
             this.AddPrescriptionItemCommand = new RelayCommand(param => AddPrescriptionItem(), param => this.PrescriptionItem != null && this.PrescriptionItem.Length > 0);
-            this.AddPictureCommand = new RelayCommand(param => AddPictureItem(), param => true);
+            this.AddPictureCommand = new RelayCommand(param => AddPictureItem(), param => this.Picture != null && this.Picture.Length > 0);
+            this.OpenFileCommand = new RelayCommand(param => OpenImageExplorer(), param => true);
         }
         #endregion
 
@@ -239,14 +245,6 @@ namespace Udokotela.ViewModel
 
         private void AddPictureItem()
         {
-            if (this.Picture == null || this.Picture.Length == 0)
-            {
-                this.Picture = ImageLoader.SearchImageWithExplorer();
-                if (this.Picture == null)
-                {
-                    return;
-                }
-            }
             byte[] filecontent = ImageLoader.Load(this.Picture);
             if (filecontent != null)
             {
@@ -257,6 +255,16 @@ namespace Udokotela.ViewModel
                 Console.WriteLine($"Failed to load image data from {this.Picture}");
             }
             this.Picture = null;
+        }
+
+        private void OpenImageExplorer()
+        {
+            this.Picture = ImageLoader.SearchImageWithExplorer();
+            if (this.Picture != null && this.Picture.Length > 0)
+            {
+                this.AddPictureItem();
+            }
+
         }
         #endregion
     }
