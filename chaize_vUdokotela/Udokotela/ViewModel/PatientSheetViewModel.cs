@@ -75,16 +75,15 @@ namespace Udokotela.ViewModel
 
         public ICommand BackCommand { get; set; }
         public ICommand OnRowDoubleClic { get; set; }
+        public ICommand AddObservationCommand { get; set; }
 
         #endregion
-
-        //                  SelectedItem="{Binding ObservationSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-
 
         #region Constructors
         public PatientSheetViewModel(Patient patientToDisplay, MainWindowViewModel mainView = null)
         {
             this._patientToDisplay = patientToDisplay;
+            this._observations = new ObservableCollection<Observation>(patientToDisplay.Observations);
             this._mainView = mainView;
             base.DisplayName = $"Udokotela - {FirstName} {Name}";
             this.BackCommand = new RelayCommand(param => DismissBack(), param => this._mainView != null && this._mainView.HasBackgroundContent());
@@ -111,6 +110,11 @@ namespace Udokotela.ViewModel
             };
             UserControl observationView = new ObservationSheetView(this._patientToDisplay, serviceObservation, this._mainView);
             this._mainView.OverlayContent(observationView);
+        }
+
+        private void AddObservation()
+        {
+            Console.WriteLine("WIP: Add observation");
         }
         #endregion
 
