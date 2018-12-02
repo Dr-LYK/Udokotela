@@ -75,6 +75,14 @@ namespace Udokotela.ViewModel
             get { return _patientToDisplay.Birthday.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR")); }
         }
 
+        /// <summary>
+        /// Comment about observation
+        /// </summary>
+        public string Comment
+        {
+            get { return this._observationToDisplay.Comment; }
+        }
+
         public ICommand BackCommand { get; set; }
 
         #endregion

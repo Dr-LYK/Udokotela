@@ -88,6 +88,7 @@ namespace Udokotela.ViewModel
             base.DisplayName = $"Udokotela - {FirstName} {Name}";
             this.BackCommand = new RelayCommand(param => DismissBack(), param => this._mainView != null && this._mainView.HasBackgroundContent());
             this.OnRowDoubleClic = new RelayCommand(param => ShowObservation(param as Observation), param => true);
+            this.AddObservationCommand = new RelayCommand(param => AddObservation(), param => MainWindowViewModel.CheckUserRole());
         }
         #endregion
 

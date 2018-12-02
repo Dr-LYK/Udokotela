@@ -30,14 +30,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Content="Retour"
-                Margin="0, 20, 20, 50"
-                Command="{Binding BackCommand}"
-                Style="{StaticResource ButtonBase}"/>
-
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -162,6 +154,14 @@
                            Style="{StaticResource ResourceKey=Text}"/>
             </StackPanel>
         </Grid>
+
+        <Button Grid.Column="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Content="Retour"
+                Margin="0, 20, 20, 50"
+                Command="{Binding BackCommand}"
+                Style="{StaticResource ButtonBase}"/>
 
         <DockPanel Grid.Column="1">
             <ListBox Name="pictureList"
