@@ -109,14 +109,14 @@ namespace Udokotela.ViewModel
         public AddPatientViewModel()
         {
             base.DisplayName = "Ajouter un patient";
-            _patientService = new CSPatient();
+            this._patientService = new CSPatient();
 
-            Name = "";
-            FirstName = "";
-            Birthdate = DateTime.Now;
+            this.Name = "";
+            this.FirstName = "";
+            this.Birthdate = DateTime.Now;
 
-            SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
-            CancelCommand = new RelayCommand(param => Cancel(), param => true);
+            this.SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
+            this.CancelCommand = new RelayCommand(param => Cancel(), param => true);
         }
         #endregion
 
@@ -134,8 +134,7 @@ namespace Udokotela.ViewModel
             }
             else
             {
-                // TODO
-                // Behavior in case save failed
+                Console.WriteLine("Adding patient failed");
             }
         }
 
