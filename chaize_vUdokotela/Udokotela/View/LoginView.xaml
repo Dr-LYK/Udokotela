@@ -28,9 +28,22 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
+        <Storyboard x:Key="LoginFade">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="Animation"
+                             From="0.0" To="1.0"
+                             Duration="0:0:2.0"/>
+        </Storyboard>
     </Window.Resources>
 
-    <Grid>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoginFade}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid x:Name="Animation">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="3*"/>
