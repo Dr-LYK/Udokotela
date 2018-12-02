@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Udokotela.ServicePatient;
 using Udokotela.Services;
+using Udokotela.Utils;
 using Udokotela.View;
 
 namespace Udokotela.ViewModel
@@ -20,8 +21,8 @@ namespace Udokotela.ViewModel
     {
         #region Attributes
         private Patient _patientToDisplay;
-        private MainWindowViewModel _mainView;
         private ObservableCollection<Observation> _observations;
+        private MainWindowViewModel _mainView;
         #endregion
 
         #region Properties
@@ -115,7 +116,14 @@ namespace Udokotela.ViewModel
 
         private void AddObservation()
         {
-            Console.WriteLine("WIP: Add observation");
+            WindowLoader.Show("AddObservation", new AddObservationViewModel(Id));
+            // Problem: we have no clue when observation is created
+            Patient newPatient = new CSPatient().GetPatient(Id);
+            if (newPatient != null)
+            {
+                this._patientToDisplay = newPatient;
+                this._observations = new ObservableCollection<Observation>(this._patientToDisplay.Observations);
+            }
         }
         #endregion
 
