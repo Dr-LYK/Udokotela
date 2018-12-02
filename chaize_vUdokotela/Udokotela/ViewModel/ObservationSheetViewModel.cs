@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -73,6 +74,16 @@ namespace Udokotela.ViewModel
         public string Birthdate
         {
             get { return _patientToDisplay.Birthday.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR")); }
+        }
+
+        public ObservableCollection<string> PrescriptionList
+        {
+            get { return this._observationToDisplay.Prescription == null ? new ObservableCollection<string>() : new ObservableCollection<string>(this._observationToDisplay.Prescription); }
+        }
+
+        public ObservableCollection<byte[]> Pictures
+        {
+            get { return this._observationToDisplay.Pictures == null ? new ObservableCollection<byte[]>() : new ObservableCollection<byte[]>(this._observationToDisplay.Pictures); }
         }
 
         /// <summary>

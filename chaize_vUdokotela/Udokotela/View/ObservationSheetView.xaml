@@ -10,7 +10,7 @@
 
     <UserControl.Resources>
         <DataTemplate x:Key="templateListPrescription">
-            <TextBlock Text="{Binding PrescriptionItem}"
+            <TextBlock Text="{Binding}"
                        Margin="20, 0, 0, 5"
                        Style="{StaticResource ResourceKey=Text}"/>
         </DataTemplate>
@@ -20,7 +20,7 @@
                    Margin="10"
                    Width="64"
                    Height="64"
-                   Source="{Binding Picture}"/>
+                   Source="{Binding}"/>
         </DataTemplate>
     </UserControl.Resources>
 
@@ -139,7 +139,7 @@
                            Style="{StaticResource ResourceKey=TextEmphasis}"/>
 
                 <ListBox Name="prescriptionList"
-                         ItemsSource="{Binding}"
+                         ItemsSource="{Binding PrescriptionList}"
                          ItemTemplate="{StaticResource templateListPrescription}"/>
             </StackPanel>
 
@@ -165,7 +165,7 @@
 
         <DockPanel Grid.Column="1">
             <ListBox Name="pictureList"
-                     ItemsSource="{Binding}"
+                     ItemsSource="{Binding Pictures}"
                      ItemTemplate="{StaticResource templateListPictures}"/>
         </DockPanel>
     </Grid>
