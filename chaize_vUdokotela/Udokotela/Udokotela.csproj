@@ -78,6 +78,7 @@
     <Compile Include="Utils\ImageLoader.cs" />
     <Compile Include="Utils\PasswordBoxBindingBehavior.cs" />
     <Compile Include="Utils\WindowLoader.cs" />
+    <Compile Include="ViewModel\AddObservationViewModel.cs" />
     <Compile Include="ViewModel\ObservationSheetViewModel.cs" />
     <Compile Include="ViewModel\PatientSheetViewModel.cs" />
     <Compile Include="ViewModel\UserSheetViewModel.cs" />
@@ -90,6 +91,9 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PatientManagementViewModel.cs" />
     <Compile Include="ViewModel\UserManagementViewModel.cs" />
+    <Compile Include="View\AddObservationView.xaml.cs">
+      <DependentUpon>AddObservationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ObservationSheetView.xaml.cs">
       <DependentUpon>ObservationSheetView.xaml</DependentUpon>
     </Compile>
@@ -148,6 +152,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Page Include="View\AddObservationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ObservationSheetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
