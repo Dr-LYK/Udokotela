@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Udokotela.ServicePatient;
+using Udokotela.Services;
+using Udokotela.View;
 
 namespace Udokotela.ViewModel
 {
@@ -49,9 +52,9 @@ namespace Udokotela.ViewModel
         /// <summary>
         /// Date de naissance du patient.
         /// </summary>
-        public DateTime Birthdate
+        public string Birthdate
         {
-            get { return _patientToDisplay.Birthday; }
+            get { return _patientToDisplay.Birthday.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR")); }
         }
 
         /// <summary>
@@ -72,16 +75,15 @@ namespace Udokotela.ViewModel
 
         public ICommand BackCommand { get; set; }
         public ICommand OnRowDoubleClic { get; set; }
+        public ICommand AddObservationCommand { get; set; }
 
         #endregion
-
-        //                  SelectedItem="{Binding ObservationSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-
 
         #region Constructors
         public PatientSheetViewModel(Patient patientToDisplay, MainWindowViewModel mainView = null)
         {
             this._patientToDisplay = patientToDisplay;
+            this._observations = new ObservableCollection<Observation>(patientToDisplay.Observations);
             this._mainView = mainView;
             base.DisplayName = $"Udokotela - {FirstName} {Name}";
             this.BackCommand = new RelayCommand(param => DismissBack(), param => this._mainView != null && this._mainView.HasBackgroundContent());
@@ -97,9 +99,22 @@ namespace Udokotela.ViewModel
 
         private void ShowObservation(Observation observation)
         {
-            Console.WriteLine($"WIP: Showing observation {observation.Comment}");
-            /*UserControl observationView = new ObservationSheetView(observation, this._mainView);
-            this._mainView.OverlayContent(observationView);*/
+            ServiceObservation.Observation serviceObservation = new ServiceObservation.Observation() {
+                BloodPressure = observation.BloodPressure,
+                Comment = observation.Comment,
+                Date = observation.Date,
+                ExtensionData = observation.ExtensionData,
+                Pictures = observation.Pictures,
+                Prescription = observation.Prescription,
+                Weight = observation.Weight
+            };
+            UserControl observationView = new ObservationSheetView(this._patientToDisplay, serviceObservation, this._mainView);
+            this._mainView.OverlayContent(observationView);
+        }
+
+        private void AddObservation()
+        {
+            Console.WriteLine("WIP: Add observation");
         }
         #endregion
 
