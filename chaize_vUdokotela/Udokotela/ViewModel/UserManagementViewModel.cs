@@ -13,7 +13,7 @@ using Udokotela.View;
 
 namespace Udokotela.ViewModel
 {
-    public class UserManagementViewModel: BaseViewModel
+    public class UserManagementViewModel: BaseViewModel, IParentWindow
     {
         #region Variables
         private CSUser _userService;
@@ -83,9 +83,7 @@ namespace Udokotela.ViewModel
 
         private void AddUser()
         {
-            WindowLoader.Show("AddUser");
-            // Problem: we have no clue when user is created
-            GetUsersInfo();
+            WindowLoader.Show("AddUser", new AddUserViewModel(this));
         }
 
         private void DeleteSelectedUser()
@@ -102,6 +100,11 @@ namespace Udokotela.ViewModel
         {
             UserControl profileView = new UserSheetView(this.UserSelected, this._mainView);
             this._mainView.OverlayContent(profileView);
+        }
+
+        public void SuccessCallBack()
+        {
+            this.GetUsersInfo();
         }
         #endregion
     }

@@ -14,7 +14,8 @@ namespace Udokotela.ViewModel
     public class AddPatientViewModel : BaseViewModel
     {
         #region Attributes
-        private CSPatient _patientService;
+        private readonly IParentWindow _caller;
+        private readonly CSPatient _patientService;
         private bool _closeSignal;
         private string _name;
         private string _firstName;
@@ -118,6 +119,11 @@ namespace Udokotela.ViewModel
             this.SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
             this.CancelCommand = new RelayCommand(param => Cancel(), param => true);
         }
+
+        public AddPatientViewModel(IParentWindow caller) : this()
+        {
+            this._caller = caller;
+        }
         #endregion
 
         #region Methods
@@ -130,6 +136,10 @@ namespace Udokotela.ViewModel
             bool isPatientAdded =_patientService.AddPatient(newPatient);
             if (isPatientAdded)
             {
+                if (this._caller != null)
+                {
+                    this._caller.SuccessCallBack();
+                }
                 this.CloseSignal = true;
             }
             else

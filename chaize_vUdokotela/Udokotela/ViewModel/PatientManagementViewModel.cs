@@ -13,7 +13,7 @@ using Udokotela.View;
 
 namespace Udokotela.ViewModel
 {
-    public class PatientManagementViewModel: BaseViewModel
+    public class PatientManagementViewModel: BaseViewModel, IParentWindow
     {
         #region Variables
         private CSPatient _patientService;
@@ -80,9 +80,7 @@ namespace Udokotela.ViewModel
 
         private void AddPatient()
         {
-            WindowLoader.Show("AddPatient");
-            // Problem: we have no clue when patient is created
-            GetPatientsInfo();
+            WindowLoader.Show("AddPatient", new AddPatientViewModel(this));
         }
 
         private void DeleteSelectedPatient()
@@ -99,6 +97,11 @@ namespace Udokotela.ViewModel
         {
             UserControl profileView = new PatientSheetView(this.PatientSelected, this._mainView);
             this._mainView.OverlayContent(profileView);
+        }
+
+        public void SuccessCallBack()
+        {
+            this.GetPatientsInfo();
         }
         #endregion
     }

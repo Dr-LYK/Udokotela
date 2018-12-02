@@ -14,6 +14,7 @@ namespace Udokotela.ViewModel
     public class AddUserViewModel : BaseViewModel
     {
         #region Attributes
+        private readonly IParentWindow _caller;
         private readonly CSUser _userService;
         private bool _closeSignal;
         private string _name;
@@ -160,7 +161,7 @@ namespace Udokotela.ViewModel
         public AddUserViewModel()
         {
             base.DisplayName = "Ajouter un utilisateur";
-            _userService = new CSUser();
+            this._userService = new CSUser();
 
             Name = "";
             FirstName = "";
@@ -172,6 +173,11 @@ namespace Udokotela.ViewModel
             SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
             CancelCommand = new RelayCommand(param => Cancel(), param => true);
             OpenFileCommand = new RelayCommand(param => OpenFile(), param => true);
+        }
+
+        public AddUserViewModel(IParentWindow caller) : this()
+        {
+            this._caller = caller;
         }
         #endregion
 
@@ -186,6 +192,10 @@ namespace Udokotela.ViewModel
             bool isUserAdded =_userService.AddUser(newUser);
             if (isUserAdded)
             {
+                if (this._caller != null)
+                {
+                    this._caller.SuccessCallBack();
+                }
                 this.CloseSignal = true;
             }
             else

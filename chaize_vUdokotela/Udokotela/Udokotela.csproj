@@ -79,6 +79,7 @@
     <Compile Include="Utils\PasswordBoxBindingBehavior.cs" />
     <Compile Include="Utils\WindowLoader.cs" />
     <Compile Include="ViewModel\AddObservationViewModel.cs" />
+    <Compile Include="ViewModel\IParentWindow.cs" />
     <Compile Include="ViewModel\ObservationSheetViewModel.cs" />
     <Compile Include="ViewModel\PatientSheetViewModel.cs" />
     <Compile Include="ViewModel\UserSheetViewModel.cs" />

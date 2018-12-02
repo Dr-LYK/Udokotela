@@ -15,7 +15,8 @@ namespace Udokotela.ViewModel
     class AddObservationViewModel : BaseViewModel
     {
         #region Attributes
-        private CSObservation _observationService;
+        private readonly IParentWindow _caller;
+        private readonly CSObservation _observationService;
         private bool _closeSignal;
         private int _patientId;
         private int _weight;
@@ -178,14 +179,20 @@ namespace Udokotela.ViewModel
         #endregion
 
         #region Constructors
-        public AddObservationViewModel(int patientId)
+        public AddObservationViewModel(int patientId, IParentWindow caller)
         {
             base.DisplayName = "Ajouter une observation";
             this._observationService = new CSObservation();
             this._patientId = patientId;
+            this._caller = caller;
 
+            this._weight = 0;
+            this._bloodPressure = 0;
+            this._prescriptionItem = "";
             this.Prescription = new ObservableCollection<string>();
+            this._picture = "";
             this.Pictures = new ObservableCollection<byte[]>();
+            this._comment = "";
 
             this.SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
             this.CancelCommand = new RelayCommand(param => Cancel(), param => true);
@@ -204,6 +211,10 @@ namespace Udokotela.ViewModel
             bool isObservationAdded = _observationService.AddObservation(this._patientId, newObservation);
             if (isObservationAdded)
             {
+                if (this._caller != null)
+                {
+                    this._caller.SuccessCallBack();
+                }
                 this.CloseSignal = true;
             }
             else

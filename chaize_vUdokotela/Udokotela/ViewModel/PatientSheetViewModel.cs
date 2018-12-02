@@ -17,7 +17,7 @@ namespace Udokotela.ViewModel
     /// <summary>
     /// Classe de ViewModel pour la fiche patient.
     /// </summary>
-    public class PatientSheetViewModel : BaseViewModel
+    public class PatientSheetViewModel : BaseViewModel, IParentWindow
     {
         #region Attributes
         private Patient _patientToDisplay;
@@ -84,7 +84,7 @@ namespace Udokotela.ViewModel
         public PatientSheetViewModel(Patient patientToDisplay, MainWindowViewModel mainView = null)
         {
             this._patientToDisplay = patientToDisplay;
-            this._observations = new ObservableCollection<Observation>(patientToDisplay.Observations);
+            this._observations = patientToDisplay.Observations == null ? new ObservableCollection<Observation>() : new ObservableCollection<Observation>(patientToDisplay.Observations);
             this._mainView = mainView;
             base.DisplayName = $"Udokotela - {FirstName} {Name}";
             this.BackCommand = new RelayCommand(param => DismissBack(), param => this._mainView != null && this._mainView.HasBackgroundContent());
@@ -116,13 +116,16 @@ namespace Udokotela.ViewModel
 
         private void AddObservation()
         {
-            WindowLoader.Show("AddObservation", new AddObservationViewModel(Id));
-            // Problem: we have no clue when observation is created
+            WindowLoader.Show("AddObservation", new AddObservationViewModel(Id, this));            
+        }
+
+        public void SuccessCallBack()
+        {
             Patient newPatient = new CSPatient().GetPatient(Id);
             if (newPatient != null)
             {
                 this._patientToDisplay = newPatient;
-                this._observations = new ObservableCollection<Observation>(this._patientToDisplay.Observations);
+                this.ObservationList = this._patientToDisplay.Observations == null ? new ObservableCollection<Observation>() : new ObservableCollection<Observation>(this._patientToDisplay.Observations);
             }
         }
         #endregion
