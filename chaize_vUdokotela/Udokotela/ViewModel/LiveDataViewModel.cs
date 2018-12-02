@@ -15,10 +15,11 @@ namespace Udokotela.ViewModel
     public class LiveDataViewModel: BaseViewModel
     {
         #region Variables
-        private CSLiveData _liveDataService;
+        private readonly CSLiveData _liveDataService;
         #endregion
 
         #region Properties
+
         /// <summary>
         /// Commande pour ouvrir le panneau de live data.
         /// </summary>
@@ -38,9 +39,6 @@ namespace Udokotela.ViewModel
         #endregion
 
         #region Methods
-        private void Run()
-        {
-        }
         #endregion
     }
 }

@@ -7,9 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <StackPanel
-            Background="Orange">
-        </StackPanel>
+    <Grid Background="White">
+        <TextBlock Text="Données en temps réel"
+                       Margin="20, 20, 0, 0"
+                       Style="{StaticResource ResourceKey=Subtitle}"/>
+
+        <lvc:CartesianChart Series="{Binding SeriesCollection}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
     </Grid>
 </UserControl>
