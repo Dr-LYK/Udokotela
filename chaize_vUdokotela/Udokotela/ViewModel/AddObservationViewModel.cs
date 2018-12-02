@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Udokotela.ServiceObservation;
 using Udokotela.Services;
+using Udokotela.Utils;
 
 namespace Udokotela.ViewModel
 {
@@ -17,8 +20,10 @@ namespace Udokotela.ViewModel
         private int _patientId;
         private int _weight;
         private int _bloodPressure;
-        private string[] _prescription;
-        private byte[][] _pictures;
+        private string _prescriptionItem;
+        private ObservableCollection<string> _prescription;
+        private string _picture;
+        private ObservableCollection<byte[]> _pictures;
         private string _comment;
         #endregion
 
@@ -72,9 +77,25 @@ namespace Udokotela.ViewModel
         }
 
         /// <summary>
+        /// Prescription item to add to Prescription property
+        /// </summary>
+        public string PrescriptionItem
+        {
+            get { return this._prescriptionItem; }
+            set
+            {
+                if (this._prescriptionItem != value)
+                {
+                    this._prescriptionItem = value;
+                    OnPropertyChanged(nameof(PrescriptionItem));
+                }
+            }
+        }
+
+        /// <summary>
         /// Représente les prescriptions pour l'observation à créer
         /// </summary>
-        public string[] Prescription
+        public ObservableCollection<string> Prescription
         {
             get { return _prescription; }
             set
@@ -88,9 +109,25 @@ namespace Udokotela.ViewModel
         }
 
         /// <summary>
+        /// Picture to add to Pictures property
+        /// </summary>
+        public string Picture
+        {
+            get { return this._picture; }
+            set
+            {
+                if (this._picture != value)
+                {
+                    this._picture = value;
+                    OnPropertyChanged(nameof(Picture));
+                }
+            }
+        }
+
+        /// <summary>
         /// Représente les images de l'observation à créer
         /// </summary>
-        public byte[][] Pictures
+        public ObservableCollection<byte[]> Pictures
         {
             get { return _pictures; }
             set
@@ -128,6 +165,16 @@ namespace Udokotela.ViewModel
         /// Commande pour annuler la création de l'observation et fermer la fenêtre modale.
         /// </summary>
         public ICommand CancelCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ajouter une prescription à l'observation
+        /// </summary>
+        public ICommand AddPrescriptionItemCommand { get; set; }
+
+        /// <summary>
+        /// Commande pour ajouter une image à l'observation
+        /// </summary>
+        public ICommand AddPictureCommand { get; set; }
         #endregion
 
         #region Constructors
@@ -137,8 +184,13 @@ namespace Udokotela.ViewModel
             this._observationService = new CSObservation();
             this._patientId = patientId;
 
+            this.Prescription = new ObservableCollection<string>();
+            this.Pictures = new ObservableCollection<byte[]>();
+
             this.SaveCommand = new RelayCommand(param => Save(), param => MainWindowViewModel.CheckUserRole());
             this.CancelCommand = new RelayCommand(param => Cancel(), param => true);
+            this.AddPrescriptionItemCommand = new RelayCommand(param => AddPrescriptionItem(), param => this.PrescriptionItem != null && this.PrescriptionItem.Length > 0);
+            this.AddPictureCommand = new RelayCommand(param => AddPictureItem(), param => true);
         }
         #endregion
 
@@ -148,7 +200,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void Save()
         {
-            Observation newObservation = new Observation() { BloodPressure = this.BloodPressure, Comment = this.Comment, Date = DateTime.Now, Pictures = this.Pictures, Prescription = this.Prescription, Weight = this.Weight };
+            Observation newObservation = new Observation() { BloodPressure = this.BloodPressure, Comment = this.Comment, Date = DateTime.Now, Pictures = this.Pictures.ToArray(), Prescription = this.Prescription.ToArray(), Weight = this.Weight };
             bool isObservationAdded = _observationService.AddObservation(this._patientId, newObservation);
             if (isObservationAdded)
             {
@@ -156,8 +208,7 @@ namespace Udokotela.ViewModel
             }
             else
             {
-                // TODO
-                // Behavior in case save failed
+                Console.WriteLine("Adding observation failed");
             }
         }
 
@@ -167,6 +218,34 @@ namespace Udokotela.ViewModel
         private void Cancel()
         {
             this.CloseSignal = true;
+        }
+
+        private void AddPrescriptionItem()
+        {
+            this.Prescription.Add(this.PrescriptionItem);
+            this.PrescriptionItem = null;
+        }
+
+        private void AddPictureItem()
+        {
+            if (this.Picture == null || this.Picture.Length == 0)
+            {
+                this.Picture = ImageLoader.SearchImageWithExplorer();
+                if (this.Picture == null)
+                {
+                    return;
+                }
+            }
+            byte[] filecontent = ImageLoader.Load(this.Picture);
+            if (filecontent != null)
+            {
+                this.Pictures.Add(filecontent);
+            }
+            else
+            {
+                Console.WriteLine($"Failed to load image data from {this.Picture}");
+            }
+            this.Picture = null;
         }
         #endregion
     }

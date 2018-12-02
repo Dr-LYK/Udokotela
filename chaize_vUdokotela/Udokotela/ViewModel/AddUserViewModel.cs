@@ -190,8 +190,7 @@ namespace Udokotela.ViewModel
             }
             else
             {
-                // TODO
-                // Behavior in case save failed
+                Console.WriteLine("Adding user failed");
             }
         }
 
@@ -208,14 +207,7 @@ namespace Udokotela.ViewModel
         /// </summary>
         private void OpenFile()
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "Image Files (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
-            bool? result = dlg.ShowDialog();
-            if (result.HasValue && result.Value)
-            {
-                this.Picture = dlg.FileName;
-            }
+            this.Picture = ImageLoader.SearchImageWithExplorer();
         }
         #endregion
     }

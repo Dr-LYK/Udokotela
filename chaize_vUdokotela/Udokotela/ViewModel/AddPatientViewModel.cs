@@ -134,8 +134,7 @@ namespace Udokotela.ViewModel
             }
             else
             {
-                // TODO
-                // Behavior in case save failed
+                Console.WriteLine("Adding patient failed");
             }
         }
 
